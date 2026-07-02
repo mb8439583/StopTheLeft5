@@ -1,0 +1,3336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── PRIMARY META ─────────────────────────────────────────── -->
+<title>Stop the Left — Tactical Voting Guide for the UK</title>
+<meta name="description" content="Find out whether to vote Conservative or Reform UK in your constituency to keep the left out. Free tactical voting tool covering every seat in Great Britain, updated with the latest polling.">
+<meta name="keywords" content="tactical voting UK, stop Labour, stop the left, Conservative Reform UK, right-wing tactical vote, UK election 2024 2025, split right vote, constituency guide">
+<link rel="canonical" href="https://stoptheleft.vote/">
+
+<!-- ── OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ─────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stoptheleft.vote/">
+<meta property="og:site_name" content="Stop the Left">
+<meta property="og:title" content="Stop the Left — Tactical Voting Guide for the UK">
+<meta property="og:description" content="A divided right lets the left win. Find out whether to vote Conservative or Reform UK in your constituency — powered by real 2024 results and the latest YouGov polling.">
+<meta property="og:image" content="https://stoptheleft.vote/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+
+<!-- ── TWITTER / X CARD ──────────────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@FreeTheMarketUK">
+<meta name="twitter:title" content="Stop the Left — Tactical Voting Guide for the UK">
+<meta name="twitter:description" content="A divided right lets the left win. Enter your postcode to find out whether to vote Conservative or Reform UK in your constituency.">
+<meta name="twitter:image" content="https://stoptheleft.vote/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="data/results.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan: #17B9D1;
+    --cyan-dark: #0e8ca0;
+    --cyan-darker: #0a6b7a;
+    --cyan-light: #e3f6fa;
+    --blue: #0a3d8f;
+    --blue-dark: #062a66;
+    --blue-light: #e4ebf7;
+    --red: #C8102E;
+    --ink: #16181d;
+    --ink-2: #2a2d35;
+    --ink-mid: #555;
+    --ink-light: #8b8f98;
+    --paper: #ffffff;
+    --bg: #f4f6f8;
+    --stone: #e9edf1;
+    --border: #dde2e8;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --maxw: 1160px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  .display { font-family: 'Archivo', sans-serif; }
+
+  /* ── TOP NAV BAR ───────────────────────────────────────────── */
+  .navbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+  }
+  .nav-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav-x {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cyan-dark);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav-x svg { color: var(--ink); }
+  .nav-x:hover { opacity: 0.7; }
+  .nav-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cyan-dark);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav-email .ti { font-size: 16px; color: var(--ink); }
+  .nav-email:hover { opacity: 0.7; }
+  @media (max-width: 560px) {
+    .nav-email span { display: none; }
+    .nav-x span { display: none; }
+  }
+
+  .brand-mark {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan) 50%, var(--blue) 50%, var(--blue) 100%);
+    flex-shrink: 0;
+  }
+
+  .brand em { color: var(--red); font-style: normal; }
+  .brand-tld { color: var(--ink); }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cyan);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--cyan-dark); }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(10,61,143,0.92) 0%, rgba(10,61,143,0.96) 100%),
+      radial-gradient(ellipse 80% 60% at 80% 0%, rgba(23,185,209,0.35) 0%, transparent 60%);
+    background-color: var(--blue);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 56px 24px 64px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px 48px; }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(23,185,209,0.12);
+    border: 1px solid rgba(23,185,209,0.3);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(38px, 5.6vw, 58px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 .accent { color: var(--cyan); }
+  .hero h1 .accent-red { color: var(--red); }
+
+  .hero-sub {
+    margin-top: 22px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    max-width: 460px;
+  }
+
+  /* ── SEARCH CARD (in hero, right side) ─────────────────────── */
+  .search-card {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: 30px 30px 28px;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.45);
+  }
+
+  .search-card-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  .search-card-sub {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--ink-mid);
+    margin-bottom: 20px;
+  }
+
+  .search-field {
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .search-field i {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-light);
+    font-size: 18px;
+  }
+
+  #postcode-input {
+    width: 100%;
+    padding: 15px 16px 15px 44px;
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  #postcode-input::placeholder {
+    color: var(--ink-light);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  #postcode-input:focus {
+    border-color: var(--cyan);
+    background: #fff;
+  }
+
+  #search-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--cyan);
+    color: #fff;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  #search-btn:hover { background: var(--cyan-dark); }
+  #search-btn:active { transform: scale(0.985); }
+
+  .search-card-hint {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--ink-light);
+    text-align: center;
+    line-height: 1.45;
+  }
+
+  /* ── SEARCH MODE TOGGLE ────────────────────────────────────── */
+  .search-toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 12px;
+  }
+  .search-toggle-btn {
+    flex: 1;
+    padding: 9px 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    background: transparent;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .search-toggle-btn.active {
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .search-toggle-btn:not(.active):hover { color: var(--ink); }
+
+  /* Seat search input — like postcode but normal case (it's a name, not a code) */
+  #seat-input {
+    width: 100%;
+    padding: 15px 16px 15px 44px;
+    font-size: 17px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  #seat-input::placeholder { color: var(--ink-light); font-weight: 500; }
+  #seat-input:focus { border-color: var(--cyan); background: #fff; }
+  .seat-search-field { position: relative; }
+
+  /* Autocomplete dropdown */
+  .seat-suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    z-index: 30;
+    margin: 0; padding: 4px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px -12px rgba(0,0,0,0.25);
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .seat-suggestions li {
+    padding: 10px 12px;
+    font-size: 15px;
+    color: var(--ink);
+    border-radius: 7px;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+  .seat-suggestions li.active,
+  .seat-suggestions li:hover { background: var(--cyan-light); }
+  .seat-suggestions li .seat-sug-meta { font-size: 12px; color: var(--ink-light); margin-top: 1px; }
+  .seat-suggestions .seat-sug-empty { padding: 12px; color: var(--ink-light); font-size: 14px; cursor: default; }
+  .seat-suggestions .seat-sug-empty:hover { background: none; }
+
+  #seat-search-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--cyan);
+    color: #fff;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  #seat-search-btn:hover { background: var(--cyan-dark); }
+  #seat-search-btn:active { transform: scale(0.985); }
+
+  /* ── RESULT AREA ───────────────────────────────────────────── */
+  #result-area {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .loading-card, .error-card {
+    margin: 36px 0;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    text-align: center;
+    color: var(--ink-light);
+  }
+
+  .spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--stone);
+    border-top-color: var(--cyan);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-card {
+    background: #fff4f5;
+    border-color: #f3c6cc;
+    color: var(--red);
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* ── RESULT CARD ───────────────────────────────────────────── */
+  .result-card {
+    margin: 36px 0;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 12px 40px -24px rgba(0,0,0,0.25);
+  }
+
+  .result-header {
+    padding: 20px 32px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .constituency-name {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 27px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .constituency-sub {
+    margin-top: 5px;
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+
+  .constituency-winner-badge {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .badge-lab  { background: #ffe3e7; color: #b00e20; }
+  .badge-con  { background: #dde7f6; color: #0a3d8f; }
+  .badge-ref  { background: #def4f8; color: #0a6b7a; }
+  .badge-ld   { background: #fff2db; color: #8a5d00; }
+  .badge-snp  { background: #fbf6d6; color: #6f5d00; }
+  .badge-grn  { background: #e2f4e8; color: #1a6b2e; }
+  .badge-other{ background: #eceef1; color: #555; }
+
+  /* ── REC BANNER ────────────────────────────────────────────── */
+  .rec-banner {
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .rec-banner.rec-con { background: var(--blue-light); }
+  .rec-banner.rec-ref { background: var(--cyan-light); }
+  .rec-banner.rec-tbc { background: #e7eaee; }
+  /* SNP–Labour contest: pastel SNP yellow / Labour red diagonal stripes */
+  .rec-banner.rec-snplab {
+    background: repeating-linear-gradient(
+      -45deg,
+      #faf4cf 0px, #faf4cf 18px,
+      #fde4e8 18px, #fde4e8 36px
+    );
+  }
+  /* SNP–Lib Dem contest: pastel SNP yellow / Lib Dem orange diagonal stripes */
+  .rec-banner.rec-snpld {
+    background: repeating-linear-gradient(
+      -45deg,
+      #fdfbe8 0px, #fdfbe8 18px,
+      #ffe2c2 18px, #ffe2c2 36px
+    );
+  }
+  /* Conservative–Reform contest: pastel navy / cyan diagonal stripes */
+  .rec-banner.rec-conref {
+    background: repeating-linear-gradient(
+      -45deg,
+      #bdd2f0 0px, #bdd2f0 18px,
+      #d9f3f8 18px, #d9f3f8 36px
+    );
+  }
+
+  .rec-icon {
+    width: 54px; height: 54px;
+    border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 24px;
+  }
+  .rec-con .rec-icon { background: var(--blue); }
+  .rec-ref .rec-icon { background: var(--cyan); }
+  .rec-tbc .rec-icon { background: #c2c7cf; }
+
+  .rec-text-block { flex: 1; min-width: 220px; }
+
+  .rec-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 5px;
+  }
+
+  .rec-headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .rec-con .rec-headline { color: var(--blue); }
+  .rec-ref .rec-headline { color: var(--cyan-darker); }
+
+  .checkback-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #8a5a12;
+  }
+  .checkback-note .ti { font-size: 14px; flex-shrink: 0; color: #c47f1f; }
+
+  .rec-reason {
+    margin-top: 7px;
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+
+  /* ── DATA ROW ──────────────────────────────────────────────── */
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 640px) {
+    .data-row { grid-template-columns: 1fr; }
+  }
+
+  .chart-panel {
+    padding: 32px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 640px) {
+    .chart-panel { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  .panel-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 18px;
+    align-self: flex-start;
+  }
+
+  .chart-wrap { width: 250px; height: 250px; max-width: 100%; position: relative; }
+
+  .chart-2024-label {
+    align-self: center;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .seat-explanation {
+    margin-top: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .seat-note {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #fdf3e0;
+    border-left: 3px solid #e8a33d;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #8a5a12;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .seat-note .ti { font-size: 15px; color: #c47f1f; flex-shrink: 0; margin-top: 1px; }
+  .proj-info {
+    position: relative;
+    color: var(--cyan-dark);
+    cursor: help;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .proj-info .ti { font-size: 16px; }
+  .proj-info::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 130%;
+    right: 0;
+    width: 240px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 400;
+    padding: 10px 12px;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .proj-info:hover::after, .proj-info:focus::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .chart-legend {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 18px;
+    justify-content: center;
+  }
+  .legend-item {
+    font-size: 13px;
+    color: var(--ink-mid);
+    display: inline-flex;
+    align-items: center;
+  }
+  .legend-dot {
+    display: inline-block;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    margin-right: 7px;
+    flex-shrink: 0;
+  }
+
+  .callouts-panel {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stat-callout {
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .stat-callout:last-child { margin-bottom: 0; }
+
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    margin-bottom: 4px;
+  }
+  .stat-value {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  /* Projected Con vs Reform comparison */
+  .proj-block {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px 12px;
+    margin-bottom: 14px;
+  }
+  .proj-block-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .proj-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+  .proj-row.proj-leader { background: var(--bg); }
+  .proj-party {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+  }
+  .proj-dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+  .proj-figs {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+  }
+  .proj-was { font-size: 14px; color: var(--ink-light); }
+  .proj-arrow { font-size: 14px; color: var(--ink-light); }
+  .proj-now { font-size: 18px; }
+  .proj-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  .proj-foot {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  .result-footer {
+    padding: 15px 32px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--ink-light);
+    background: var(--bg);
+    line-height: 1.5;
+  }
+
+  /* ── STRAPLINE BAND ────────────────────────────────────────── */
+  .strapline-band {
+    background: var(--ink);
+    padding: 30px 24px;
+  }
+  .strapline {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(17px, 2.4vw, 23px);
+    line-height: 1.4;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .strapline .sl-line {
+    margin: 0 6px;
+    white-space: nowrap;
+  }
+  .strapline .sl-cta {
+    display: block;
+    margin-top: 10px;
+    color: var(--cyan);
+    font-weight: 800;
+  }
+  .strapline strong { font-weight: 800; }
+  .sl-lab { color: #ff5666; }   /* lightened Labour red for contrast on dark */
+  .sl-grn { color: #3fd07f; }   /* lightened Green */
+  .sl-snp { color: #ffe14d; }   /* lightened SNP yellow */
+  @media (max-width: 680px) {
+    .strapline .sl-line { display: block; white-space: normal; margin: 4px 0; }
+  }
+
+  /* ── BY-ELECTIONS ──────────────────────────────────────────── */
+  /* ── SHARE BANNER ──────────────────────────────────────────── */
+  .share-banner {
+    background: var(--cyan-light);
+    border-top: 1px solid rgba(23,185,209,0.25);
+    border-bottom: 1px solid rgba(23,185,209,0.25);
+    padding: 20px 24px;
+  }
+  .share-banner-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .share-banner-icon {
+    font-size: 22px;
+    color: var(--cyan-dark);
+    flex-shrink: 0;
+  }
+  .share-banner-text {
+    font-size: 15px;
+    color: var(--cyan-darker);
+    line-height: 1.5;
+  }
+  .share-banner-text strong {
+    font-weight: 700;
+    color: var(--cyan-darker);
+  }
+
+  .byelections-wrap { max-width: var(--maxw); margin: 56px auto 0; padding: 0 24px; }
+
+  .bye-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .bye-pulse {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--red);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .bye-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    opacity: 0;
+    animation: pulse 2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.6); opacity: 0.7; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .bye-heading {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .bye-subheading {
+    font-size: 15px;
+    color: var(--ink-mid);
+    margin-bottom: 24px;
+  }
+
+  .bye-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .bye-row {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--holder-col, var(--border));
+    border-radius: var(--radius-lg);
+    padding: 22px 26px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  }
+  .bye-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -16px rgba(0,0,0,0.25);
+  }
+  @media (max-width: 680px) {
+    .bye-row { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  .bye-date {
+    text-align: center;
+    padding-right: 24px;
+    border-right: 1px solid var(--border);
+    min-width: 76px;
+  }
+  @media (max-width: 680px) {
+    .bye-date { text-align: left; padding-right: 0; border-right: none; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  }
+  .bye-date-day {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .bye-date-mon {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    margin-top: 4px;
+  }
+
+  .bye-mid { min-width: 0; }
+  .bye-constituency {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bye-row:hover .bye-constituency { color: var(--cyan-dark); }
+  .bye-constituency .ti { font-size: 17px; opacity: 0.5; }
+  .bye-holder {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .bye-holder-dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--holder-col);
+    flex-shrink: 0;
+  }
+
+  .bye-rec {
+    text-align: right;
+    min-width: 180px;
+  }
+  @media (max-width: 680px) {
+    .bye-rec { text-align: left; }
+  }
+  .bye-rec-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+  }
+  .bye-rec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 30px;
+  }
+  .bye-rec-pill .ti { font-size: 17px; }
+  .bye-rec-none {
+    background: var(--stone);
+    color: var(--ink-mid);
+  }
+
+  /* ── WHY THIS SITE EXISTS — standalone blue band ───────────── */
+  .why-band {
+    background:
+      linear-gradient(180deg, rgba(10,61,143,0.97) 0%, rgba(8,50,120,1) 100%),
+      radial-gradient(ellipse 70% 80% at 15% 0%, rgba(23,185,209,0.30) 0%, transparent 55%);
+    background-color: var(--blue);
+    margin-top: 56px;
+    padding: 56px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+  .why-band-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .why-heading-solo {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .why-lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+  }
+  .why-lead strong { color: #fff; font-weight: 700; }
+
+  /* ── METHODOLOGY SECTION (expand/collapse in place) ────────── */
+  .method-wrap { max-width: var(--maxw); margin: 56px auto 0; padding: 0 24px; }
+  .method-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 14px 36px -26px rgba(14,140,160,0.45);
+  }
+  .method-toggle {
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    transition: filter 0.15s;
+    user-select: none;
+    background: linear-gradient(120deg, #cdeef6 0%, #bfe9f3 55%, #b2e4f0 100%);
+  }
+  .method-toggle:hover {
+    filter: brightness(1.025);
+  }
+  .method-link-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--cyan);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px -4px rgba(0,0,0,0.25);
+  }
+  .method-link-text { flex: 1; min-width: 0; }
+  .method-link-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .method-link-sub {
+    margin-top: 4px;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  .method-chevron {
+    color: var(--cyan-dark);
+    font-size: 26px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .method-card.open .method-chevron { transform: rotate(180deg); }
+  .method-body {
+    padding: 4px 24px 26px;
+    border-top: 1px solid var(--border);
+    background: var(--paper);
+  }
+  .method-body .method-block { padding-top: 20px; }
+  @media (max-width: 480px) {
+    .method-wrap { padding: 0 12px; margin-top: 36px; }
+    .method-toggle { padding: 16px 16px; gap: 14px; }
+    .method-body { padding: 4px 16px 20px; }
+  }
+
+  /* ── NATIONAL PICTURE panel — navy "data" aesthetic, deliberately distinct
+        from the cyan methodology banner below it ───────────────────────── */
+  .natpic-wrap { max-width: var(--maxw); margin: 56px auto 0; padding: 0 24px; }
+  .natpic-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 14px 36px -26px rgba(14,140,160,0.45);
+    border: 1px solid var(--border);
+  }
+  .natpic-toggle {
+    background: linear-gradient(120deg, #cdeef6 0%, #bfe9f3 55%, #b2e4f0 100%);
+    color: var(--ink);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    user-select: none;
+  }
+  .natpic-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--cyan);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+    box-shadow: 0 4px 12px -4px rgba(0,0,0,0.25);
+  }
+  .natpic-head-text { flex: 1; min-width: 0; }
+  .natpic-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800; font-size: 20px; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .natpic-sub { margin-top: 3px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.5; }
+  .natpic-chevron { font-size: 26px; flex-shrink: 0; color: var(--cyan-dark); transition: transform 0.2s ease; }
+  .natpic-card.open .natpic-chevron { transform: rotate(180deg); }
+
+  /* headline totals strip — this is the clickable expander (the part that reveals the
+     per-category detail), so it carries the chevron, pointer and hover shift. A slightly
+     bolder cyan than the static header above it, so the two zones stay distinct. */
+  .natpic-totals {
+    display: flex; align-items: center; gap: 18px;
+    padding: 16px 28px 18px;
+    background: #eef9fc;
+    border-top: 1px solid rgba(10,61,143,0.07);
+    cursor: pointer;
+    transition: filter 0.15s;
+  }
+  .natpic-totals:hover { filter: brightness(0.98); }
+  .natpic-totals-items { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  .natpic-total-item { display: flex; align-items: baseline; gap: 8px; }
+  .natpic-total-num {
+    font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 21px;
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
+  }
+  .natpic-total-label { font-size: 12.5px; color: var(--ink-mid); font-weight: 600; }
+
+  .natpic-body { background: var(--bg); padding: 8px 0 6px; }
+  .natpic-cat {
+    border-top: 1px solid var(--border);
+  }
+  .natpic-cat:first-child { border-top: none; }
+  .natpic-cat-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 15px 28px;
+    cursor: pointer; user-select: none;
+    transition: background 0.12s;
+  }
+  .natpic-cat-head:hover { background: var(--paper); }
+  .natpic-cat-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; align-self: center; }
+  /* Party categories: solid party-colour dot. Assessment categories: hollow slate
+     ring — visually distinct so the difference reads as "party vs assessment", not
+     as a palette that ran out of colours. */
+  .natpic-cat-dot.is-assessment { background: transparent; box-shadow: inset 0 0 0 2px #94a3b8; }
+  .natpic-cat-dot.is-contest { background: transparent; }
+  .natpic-cat-dot.is-contest svg { display: block; border-radius: 50%; }
+  .natpic-cat-name { font-weight: 700; font-size: 15.5px; color: var(--ink); flex: 1; }
+  .natpic-cat-count {
+    font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 16px;
+    color: var(--ink); font-variant-numeric: tabular-nums;
+  }
+  .natpic-cat-chevron { font-size: 18px; color: var(--ink-light); transition: transform 0.2s ease; }
+  .natpic-cat.open .natpic-cat-chevron { transform: rotate(180deg); }
+  .natpic-cat-desc { font-size: 12.5px; color: var(--ink-light); font-weight: 500; margin-top: 2px; }
+  .natpic-cat-namewrap { flex: 1; min-width: 0; }
+
+  .natpic-seats { padding: 12px 28px 18px; display: none; flex-wrap: wrap; gap: 7px; }
+  .natpic-cat.open .natpic-seats { display: flex; }
+  .natpic-seat-chip {
+    font-size: 12.5px; color: var(--ink-2);
+    background: var(--paper); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 999px;
+    cursor: pointer; transition: background 0.12s, border-color 0.12s, color 0.12s;
+  }
+  /* Chip hover matches its section's colour, rather than a single blue everywhere
+     (which clashed, especially on the red/yellow "not winnable" list). */
+  .natpic-seats--REF .natpic-seat-chip:hover { background: var(--cyan-light); border-color: var(--cyan); color: var(--cyan-darker); }
+  .natpic-seats--CON .natpic-seat-chip:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+  .natpic-seats--CONTEST .natpic-seat-chip:hover { background: #dbeef3; border-color: #2b7e9e; color: #1f5f78; }
+  .natpic-seats--UNCLEAR .natpic-seat-chip:hover { background: #eceef1; border-color: #94a3b8; color: #475569; }
+  .natpic-seats--NOVOTE .natpic-seat-chip:hover { background: #fbe4e7; border-color: #C8102E; color: #a50d26; }
+  .natpic-grandtotal {
+    padding: 14px 28px; border-top: 2px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 13.5px; color: var(--ink-mid);
+  }
+  .natpic-grandtotal strong { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink); }
+  @media (max-width: 480px) {
+    .natpic-wrap { padding: 0 12px; margin-top: 40px; }
+    .natpic-toggle { padding: 18px 16px; gap: 14px; }
+    .natpic-totals { padding: 14px 16px; gap: 8px 18px; }
+    .natpic-cat-head, .natpic-seats, .natpic-grandtotal { padding-left: 16px; padding-right: 16px; }
+  }
+
+  .about-wrap { max-width: var(--maxw); margin: 56px auto 0; padding: 0 24px; }
+
+  .rationale-block {
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  .rationale-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--cyan-light);
+    color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .rationale-block h3 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    color: var(--blue);
+  }
+  .rationale-block p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+  }
+  .rationale-block p:last-child { margin-bottom: 0; }
+  .rationale-block strong { color: var(--ink); font-weight: 700; }
+  @media (max-width: 600px) {
+    .rationale-block { flex-direction: column; gap: 16px; padding: 24px 22px; }
+  }
+
+  .about-heading {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-top: 0;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--blue);
+  }
+  .about-heading .accent { color: var(--blue); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .about-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 26px 26px;
+  }
+
+  .about-card .ac-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--blue-light);
+    color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  /* Middle card's icon cyan, to match its cyan accent stripe. */
+  .about-card:nth-child(2) .ac-icon { background: var(--cyan-light); color: var(--cyan-dark); }
+
+  .about-card h3 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 9px;
+    letter-spacing: -0.01em;
+  }
+  .about-card p { font-size: 14px; color: var(--ink-mid); line-height: 1.6; }
+  .about-card strong { color: var(--ink); font-weight: 600; }
+
+  .method-block {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  .method-block h3 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    margin: 22px 0 12px;
+    color: var(--blue);
+  }
+  .method-block h3:first-child { margin-top: 0; }
+  .method-block p {
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .method-block p:last-child { margin-bottom: 0; }
+  .method-block strong { color: var(--ink); font-weight: 600; }
+  .swing-table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+  }
+  @media (max-width: 560px) { .swing-table { grid-template-columns: 1fr; } }
+  .swing-cell {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .swing-cell .sc-party {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .swing-cell .sc-nums { font-size: 13px; color: var(--ink-mid); }
+  .swing-cell .sc-swing { font-weight: 600; }
+  .sc-up { color: var(--cyan-dark); }
+  .sc-down { color: var(--red); }
+  .method-note {
+    font-size: 12.5px;
+    color: var(--ink-light);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 18px;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────── */
+  footer {
+    background: #041d4a;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    margin-top: 0;
+    line-height: 1.7;
+  }
+  footer strong { color: rgba(255,255,255,0.85); }
+  footer .foot-brand {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  footer .imprint {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.4);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── MOBILE OVERRIDES (≤ 480px) ────────────────────────────── */
+  /* All mobile-specific rules live here in one block so that     */
+  /* future changes to base styles automatically apply everywhere. */
+  @media (max-width: 480px) {
+
+    /* Hero */
+    .hero-inner { padding: 28px 16px 32px; gap: 24px; }
+    .hero h1 { font-size: 32px; }
+    .hero h1 .accent { white-space: normal; }
+    .hero-sub { font-size: 15px; margin-top: 14px; }
+    .hero-eyebrow { font-size: 11px; margin-bottom: 16px; }
+
+    /* Search card */
+    .search-card { padding: 22px 18px 20px; }
+    .search-card-title { font-size: 18px; }
+    #postcode-input { font-size: 16px; padding: 13px 14px 13px 40px; }
+    #search-btn { font-size: 15px; padding: 13px; }
+
+    /* Result area — tighter side padding on small screens */
+    #result-area { padding: 0 12px; }
+
+    /* Result card header */
+    .result-header { padding: 14px 16px 12px; }
+    .constituency-name { font-size: 21px; }
+
+    /* Recommendation banner */
+    .rec-banner { padding: 14px 16px; gap: 12px; }
+    .rec-icon { width: 42px; height: 42px; font-size: 20px; border-radius: 10px; }
+    .rec-headline { font-size: 18px; }
+    .rec-text-block { min-width: 0; }
+
+    /* Data row — already stacks at 640px; tighten padding on mobile */
+    .chart-panel { padding: 20px 16px; }
+    .chart-wrap { width: 220px; height: 220px; }
+    .callouts-panel { padding: 20px 16px; }
+
+    /* Projected figures row — prevent overflow on narrow screens */
+    .proj-row { flex-wrap: wrap; gap: 6px; }
+    .proj-figs { font-size: 13px; }
+    .proj-now { font-size: 15px; }
+    .proj-was { font-size: 12px; }
+    .proj-badge { font-size: 9px; padding: 2px 6px; margin-left: 4px; }
+    .proj-block { padding: 12px 14px 10px; }
+    .proj-block-title { font-size: 12px; }
+
+    /* Stat callout */
+    .stat-callout { padding: 14px 16px; }
+    .stat-value { font-size: 16px; }
+
+    /* Seat explanation */
+    .seat-explanation { font-size: 13.5px; }
+
+    /* Result footer */
+    .result-footer { padding: 12px 16px; font-size: 11.5px; }
+
+    /* By-elections */
+    .byelections-wrap { margin-top: 36px; padding: 0 12px; }
+    .bye-heading { font-size: 20px; }
+    .bye-constituency { font-size: 18px; }
+    .bye-rec-pill { font-size: 14px; padding: 7px 12px; }
+
+    /* About / why / method sections */
+    .about-wrap { padding: 0 12px; margin-top: 36px; }
+    .why-band { padding: 36px 0; margin-top: 36px; }
+    .why-band-inner { padding: 0 16px; }
+    .why-lead { font-size: 15px; }
+    .method-link-icon { width: 40px; height: 40px; font-size: 19px; }
+    .method-link-title { font-size: 15.5px; }
+    .method-link-sub { font-size: 12.5px; }
+
+    /* Share banner */
+    .share-banner { padding: 16px 16px; }
+    .share-banner-text { font-size: 13.5px; }
+  }
+  /* ── RANDOM SEAT BUTTON (header; toggled by SHOW_RANDOM_BUTTON) ── */
+  .random-seat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 5px 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .random-seat-btn i { font-size: 15px; }
+  .random-seat-btn:hover {
+    background: #fff;
+    color: var(--cyan-dark);
+    border-color: var(--cyan);
+  }
+  @media (max-width: 480px) {
+    .random-seat-btn { padding: 5px 9px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="brand" onclick="goHome()" role="button" tabindex="0">
+      <span class="brand-mark"></span>
+      <span class="brand-text">StopThe<em>Left</em><span class="brand-tld">.Vote</span></span>
+    </div>
+    <div class="nav-right">
+      <a class="nav-email" href="mailto:contact@stoptheleft.vote">
+        <i class="ti ti-mail"></i><span>contact@stoptheleft.vote</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">UK General Election · Tactical Voting</span>
+      <h1>A divided right<br><span class="accent">lets the left win</span></h1>
+      <p class="hero-sub">Find out which right-of-centre candidate — Conservative or Reform UK — is best placed to beat the left where you live.</p>
+    </div>
+
+    <div class="search-card">
+      <div class="search-card-title">Find your tactical vote</div>
+      <div class="search-card-sub" id="search-card-sub">Enter your postcode to see the 2024 result and the tactical recommendation.</div>
+
+      <div class="search-toggle" role="tablist" aria-label="Search by">
+        <button class="search-toggle-btn active" id="toggle-postcode" role="tab" aria-selected="true" onclick="setSearchMode('postcode')">By postcode</button>
+        <button class="search-toggle-btn" id="toggle-seat" role="tab" aria-selected="false" onclick="setSearchMode('seat')">By constituency</button>
+      </div>
+
+      <div id="mode-postcode">
+        <div class="search-field">
+          <i class="ti ti-map-pin"></i>
+          <input type="text" id="postcode-input" placeholder="e.g. SW1A 1AA" maxlength="8" autocomplete="postal-code" />
+        </div>
+        <button id="search-btn" onclick="lookupPostcode()">Search →</button>
+        <p class="search-card-hint">Powered by postcodes.io · No personal data is stored</p>
+      </div>
+
+      <div id="mode-seat" hidden>
+        <div class="search-field seat-search-field">
+          <i class="ti ti-search"></i>
+          <input type="text" id="seat-input" placeholder="Start typing a constituency…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="seat-suggestions" />
+          <ul class="seat-suggestions" id="seat-suggestions" role="listbox" hidden></ul>
+        </div>
+        <button id="seat-search-btn" onclick="lookupSeatFromInput()">Search →</button>
+        <p class="search-card-hint">Type any GB constituency name and pick from the list</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="result-area"></main>
+
+<div class="share-banner">
+  <div class="share-banner-inner">
+    <i class="ti ti-share share-banner-icon"></i>
+    <p class="share-banner-text"><strong>Find this useful? Please share it.</strong> This is an independent-run site with no marketing team currently behind it.</p>
+  </div>
+</div>
+
+<section class="byelections-wrap" id="byelections-section">
+  <div class="bye-header">
+    <span class="bye-pulse"></span>
+    <h2 class="bye-heading">Upcoming by-elections</h2>
+  </div>
+  <p class="bye-subheading">Where voters go to the polls next — and the recommended vote to keep each seat from the left. Tap a seat for the full breakdown.</p>
+  <div class="bye-list" id="bye-list"></div>
+</section>
+
+<!-- ── NATIONAL PICTURE — aggregate breakdown of all recommendations,
+     expandable, with per-category clickable seat lists for transparency ── -->
+<section class="natpic-wrap">
+  <div class="natpic-card" id="natpic-card">
+    <div class="natpic-toggle natpic-header-static">
+      <div class="natpic-icon"><i class="ti ti-map-2"></i></div>
+      <div class="natpic-head-text">
+        <div class="natpic-title">Every recommendation, counted</div>
+        <div class="natpic-sub">How the tactical call breaks down across all 632 seats in Great Britain — click the totals below to see exactly which seats.</div>
+      </div>
+    </div>
+    <div class="natpic-totals" id="natpic-totals" onclick="toggleNatpic()" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="natpic-body" data-natpic-toggle></div>
+    <div class="natpic-body" id="natpic-body" hidden></div>
+  </div>
+</section>
+
+<!-- ── METHODOLOGY — own section, expandable in place (white
+     sections sit between the blue hero and blue why-band so the
+     page doesn't run blue-into-blue when there are no upcoming
+     by-elections) ────────────────────────────────────────────── -->
+<section class="method-wrap">
+  <div class="method-card" id="method-card">
+    <div class="method-toggle" onclick="toggleMethod()" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="method-body" data-method-toggle>
+      <div class="method-link-icon"><i class="ti ti-calculator"></i></div>
+      <div class="method-link-text">
+        <div class="method-link-title">The full methodology</div>
+        <div class="method-link-sub">Uniform national swing, the thresholds used, and the deliberate exceptions — click to expand.</div>
+      </div>
+      <div class="method-chevron"><i class="ti ti-chevron-down"></i></div>
+    </div>
+    <div class="method-body" id="method-body" hidden>
+      <div class="method-block" id="method-block-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY THIS SITE EXISTS — standalone band ────────────────── -->
+<section class="why-band">
+  <div class="why-band-inner">
+    <h2 class="why-heading-solo">Why this site exists</h2>
+    <p class="why-lead">In the run-up to the 2024 election, the left-wing tactical voting site <strong>Stop the Tories</strong> (now <strong>Stop Reform and the Tories</strong>) surged in popularity, helping left-wing voters coalesce behind whoever was best placed to win each seat. In the interests of democratic fairness, right-of-centre voters deserve the same option — and so this site was created.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">Stop the Left</div>
+  Independent tactical voting guide · Not affiliated with any political party<br>
+  2024 results: House of Commons Library · Postcode data: postcodes.io (Open Government Licence)
+  <!-- Imprint removed per Electoral Commission advice (not currently required).
+       Reinstate the "Promoted by..." imprint line here when the upcoming
+       Elections Bill passes. -->
+
+</footer>
+
+<script>
+// ── PARTY CONFIG ──────────────────────────────────────────────────────────────
+const PARTY = {
+  LAB:   { label: "Labour",       colour: "#C8102E", badge: "badge-lab"  },
+  CON:   { label: "Conservative", colour: "#003087", badge: "badge-con"  },
+  REF:   { label: "Reform UK",    colour: "#17B9D1", badge: "badge-ref"  },
+  LD:    { label: "Lib Dem",      colour: "#FAA61A", badge: "badge-ld"   },
+  SNP:   { label: "SNP",          colour: "#FDF38E", badge: "badge-snp"  },
+  GRN:   { label: "Green",        colour: "#02A95B", badge: "badge-grn"  },
+  PC:    { label: "Plaid Cymru",  colour: "#3F8428", badge: "badge-grn"  },
+  OTHER: { label: "Other",        colour: "#aaa",    badge: "badge-other"},
+};
+
+function partyColour(p) { return (PARTY[p] || PARTY.OTHER).colour; }
+
+// Produce a very light tint of a hex colour for stat-callout backgrounds
+function hexToTint(hex) {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.substring(0,2), 16);
+  const g = parseInt(h.substring(2,4), 16);
+  const b = parseInt(h.substring(4,6), 16);
+  const mix = 0.90; // 90% white
+  const rr = Math.round(r + (255 - r) * mix);
+  const gg = Math.round(g + (255 - g) * mix);
+  const bb = Math.round(b + (255 - b) * mix);
+  return `rgb(${rr}, ${gg}, ${bb})`;
+}
+function partyLabel(p)  { return (PARTY[p] || PARTY.OTHER).label; }
+
+// Natural noun phrase for a party when used inside a sentence (vs. a chart label).
+// e.g. "the Conservatives", "the Lib Dems", "Reform UK", "Labour", "the SNP".
+const PARTY_PROSE = {
+  CON: "the Conservatives",
+  REF: "Reform UK",
+  LAB: "Labour",
+  LD:  "the Liberal Democrats",
+  SNP: "the SNP",
+  GRN: "the Greens",
+  PC:  "Plaid Cymru",
+  OTHER: "another party",
+};
+function partyProse(p) { return PARTY_PROSE[p] || PARTY_PROSE.OTHER; }
+// Does the prose form take a plural verb ("are/were") rather than singular ("is/was")?
+function partyPlural(p) { return (p === "CON" || p === "LD" || p === "GRN"); }
+function partyBadge(p)  { return (PARTY[p] || PARTY.OTHER).badge; }
+
+// Return a version of a party colour dark enough to read as text on a light tint.
+// Light colours (e.g. SNP yellow) get darkened; already-dark colours pass through.
+function readableColour(hex) {
+  const h = hex.replace("#", "");
+  let r = parseInt(h.substring(0,2), 16);
+  let g = parseInt(h.substring(2,4), 16);
+  let b = parseInt(h.substring(4,6), 16);
+  // Perceived luminance (0–255)
+  const lum = 0.299*r + 0.587*g + 0.114*b;
+  // If too light to read, darken toward black until it's legible
+  if (lum > 150) {
+    const factor = 110 / lum; // target luminance ~110
+    r = Math.round(r * factor);
+    g = Math.round(g * factor);
+    b = Math.round(b * factor);
+  }
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+// ── RECOMMENDATION ALGORITHM ──────────────────────────────────────────────────
+//
+//  HOW IT WORKS (uniform national swing):
+//  We take each party's 2024 national vote share and the latest YouGov poll,
+//  and apply the difference ("swing") to every seat's 2024 result.
+//  Only three swings matter for the recommendation:
+//    • Reform and Conservative — to decide WHICH right-of-centre party leads
+//    • Labour — used ONLY to test whether a seat is realistically winnable
+//
+//  TO UPDATE MONTHLY: change the `pollNow` figures in POLLING below to the
+//  latest YouGov voting-intention numbers, then re-upload the site. Nothing
+//  else needs touching. The `poll2024` baselines are fixed (the GE2024 result).
+//
+const POLLING = {
+  source: "YouGov",
+  updated: "22nd June 2026",
+  // 2024 GE national vote shares (fixed baseline)
+  poll2024: { REF: 14, CON: 24, LAB: 34 },
+  // Latest YouGov voting intention (UPDATE THESE MONTHLY)
+  pollNow:  { REF: 25, CON: 20, LAB: 18 },
+};
+
+// Tuning thresholds (points)
+// ── ELECTION MODE ─────────────────────────────────────────────────────────────
+// Set to true once a general election has been called. When true, the "wait and
+// see" caution no longer applies (there's no "nearer the election" left to wait
+// for), so the decisiveness gap shrinks to GE_DECISIVE_GAP — a pick is named in
+// almost every seat, and only a near-exact tie stays unresolved. It also reworks
+// thin-lead wording ("narrowly favours X") and hides the "check back" reminder.
+const GENERAL_ELECTION_IMMINENT = false;
+
+// ── RANDOM SEAT BUTTON ────────────────────────────────────────────────────────
+// When true, shows a "Random seat" button on the right of each result's header,
+// letting visitors quickly sample constituencies to sanity-check the tool. Set to
+// false to hide it (e.g. once the site is established and no longer in open testing).
+const SHOW_RANDOM_BUTTON = true;
+const GE_DECISIVE_GAP = 3;  // decisiveness gap used when a general election is imminent (see above).
+
+const DECISIVE_GAP = 5;    // default min lead (pts) one right party needs over the other to give a
+                           // clear pick. Distant general election → keep a margin, since polling will
+                           // shift before then and a recommendation that keeps flipping helps no one.
+                           // Within this gap the seat shows "too close to call — check back".
+                           // Imminent by-elections override this to 0 (see BYELECTIONS list), because
+                           // the contest is near, the data is firm, and a definite pick is wanted.
+const WINNABLE_GAP = 10;   // hopelessness test 1 (relative): if the winner's projected lead over the
+                           // COMBINED Conservative + Reform projected vote exceeds this many points,
+                           // even a fully united right couldn't catch them.
+const WINNABLE_GAP_LD = 15;// as WINNABLE_GAP, but used when the seat winner is the Lib Dems. Wider,
+                           // because the model holds the Lib Dem vote flat at its 2024 level (no LD
+                           // swing is modelled) while the right gets its full national swing — so the
+                           // modelled gap in LD seats is deliberately pessimistic about the right's
+                           // chances. A wider threshold offsets that known bias.
+const WINNABLE_GAP_LAB = 5;// as WINNABLE_GAP, but TIGHTER (5 not 10) when Labour is the INCUMBENT. In
+                           // Labour-held seats the projection flatters the right twice over: Labour is
+                           // swung down hard while Reform is swung up, then Con+Reform are summed into a
+                           // single "united right" that rarely materialises. So a smaller modelled gap is
+                           // enough to call the seat unwinnable. The 5-point floor (rather than 0) leaves a
+                           // cushion for polling/swing error in the seats where the right is genuinely close.
+const LEFT_DOMINANCE = 65; // hopelessness test 2 (Scotland): if the SNP and Labour were the top two
+                           // parties in 2024 (either order) and together took more than this % of the
+                           // vote, the seat is an SNP–Labour contest the right can't realistically break
+                           // into. Such seats are flagged not winnable AND shown a neutral note that
+                           // unionist tactical voting may complicate the picture. Uses actual 2024
+                           // shares — no assumption about voters switching.
+const SNPLAB_MIN_LAB = 30; // additional requirement for the SNP–Labour contest flag: Labour must have
+                           // taken at least this % in 2024. Stops a seat where the SNP dominated (50%+)
+                           // and Labour merely edged the right into a weak second from being mislabelled
+                           // a genuine SNP–Labour contest. Uses Labour's ACTUAL 2024 share, not a
+                           // projection: Labour's national swing doesn't reliably describe Scottish
+                           // seats (their support is regionally concentrated), so projecting it here
+                           // would be less trustworthy than the real result — the same reasoning that
+                           // holds the Lib Dem vote flat elsewhere.
+const SAFE_MARGIN = 10;    // a right-of-centre-held seat needs no tactical vote only if the winner led
+                           // the strongest NON-right party (Lab/LD/Green/SNP/PC) by more than this many
+                           // points in 2024. Narrower wins are contested and fall through to the normal
+                           // (neutral) comparison — no incumbency bias.
+const CARVEOUT_GAP = 10;   // for a Conservative-won seat where the Lib Dems are the challenger, the Lib
+                           // Dem carve-out (recommend Conservative) only applies if the projected
+                           // Conservative lead over the Lib Dems' 2024 share is within this many points.
+                           // A bigger lead means the seat is safe and needs no tactical vote.
+const LD_PRESENCE_MAX_CON_DEFICIT = 8; // second Lib Dem carve-out: in a left-won, right-split seat where
+                           // the Lib Dems out-polled Reform in 2024 (a meaningful LD bloc that tends to
+                           // consolidate behind the Conservatives, not Reform), recommend the
+                           // Conservatives — but only if they're not projected to trail Reform by more
+                           // than this many points. Beyond that, Reform is too clearly ahead to override.
+                           // EXCEPTION: if the LDs beat Reform by a clear margin (≥ LD_PRESENCE_CLEAR_GAP),
+                           // the carve-out always applies regardless of the Con deficit — the LD bloc is
+                           // large enough that Con consolidation dominates even a big Reform swing.
+const LD_PRESENCE_CLEAR_GAP = 3;  // if ldShare2024 exceeds refShare2024 by at least this many points,
+                           // the LD presence carve-out fires unconditionally (no Con-deficit cap).
+const LD_LEADS_LABOUR_GAP = 5; // in a Con-won seat where the LDs came second, route to the Lib Dem
+                           // carve-out only if the LDs led Labour by at least this many points in 2024
+                           // (i.e. the LDs are clearly THE challenger). If the LD–Labour gap is smaller,
+                           // Labour is essentially level and the broad-left "unified-left" framing fits
+                           // better. E.g. East Hampshire (gap ~25 → carve-out) vs East Grinstead
+                           // (gap ~0.8 → unified-left).
+const TOSSUP_SAFE_LEAD = 15; // when Con and Reform are within DECISIVE_GAP of each other but the WEAKER
+                           // of the two still leads the projected strongest-left party by at least this
+                           // many points, the seat is safe for the right however the vote splits. Rather
+                           // than "check back", it's flagged a Conservative–Reform toss-up (vote either).
+const RIGHT_CONTEST_MARGIN = 10; // a right-held seat is called a "Conservative–Reform contest" on
+                           // projections when BOTH right parties are projected at least this many
+                           // points above the strongest single left party's projection...
+const RIGHT_CONTEST_COALESCE_MARGIN = 5; // ...AND both are projected at least this many points above
+                           // the combined left (Labour projected + Lib Dem + Green at 2024) — i.e.
+                           // the seat stays right-of-centre even if the left perfectly coalesced
+                           // behind one candidate, with a safety margin.
+
+// Shared result for a "Conservative–Reform contest" verdict. Three different
+// branches detect this situation by different routes (2024 top-two, projection-based,
+// and the Case 3 safe-for-right path), but they all return the same headline/reason,
+// so it's defined once here. (Spread into each return so each still gets its own
+// fresh `proj` field.)
+const RIGHT_CONTEST_RESULT = {
+  party: null,
+  type: "rightcontest",
+  headline: "Likely Conservative–Reform contest",
+  reason: `This seat is most likely to be a contest between the Conservatives and Reform UK, so vote for whichever party you prefer.`,
+};
+
+// Shared core claim used in every Lib Dem carve-out note (defined once so the rationale
+// stays identical everywhere; edit here to change it in all four places at once).
+// Shared core used in the Lib Dem carve-out notes where the LDs out-polled Reform in
+// 2024 (defined once so the rationale stays identical; edit here to change everywhere).
+const LD_SWITCH_RATIONALE = `Many of the Lib Dem's 2024 voters were former Conservative voters fed up with the government. This makes the Conservatives better-placed to win this seat for the Right.`;
+
+// Seats where a sitting MP's party switch since 2024 complicates the tactical pick in
+// a way uniform national swing can't capture — so rather than mechanically naming a
+// party, we flag the seat as complicated. Keyed by ONS code; add an entry to extend.
+// Each entry supplies: a `fires(conProj, refProj)` gate (so the flag drops away once
+// the projection makes the point moot), and the note `reason` to show.
+const DEFECTORS = {
+  // Con MPs who have since defected to Reform UK. Only flagged while the Conservatives
+  // are still projected ahead of Reform — if Reform overtakes them, the model would
+  // point to Reform anyway and the defection no longer muddies anything.
+  "E14001375": { // Newark — Robert Jenrick
+    fires: (conProj, refProj) => conProj > refProj,
+    reason: `The Conservatives won this seat in 2024 and are projected ahead on national polling — but the incumbent, Robert Jenrick, has since defected to Reform UK. Jenrick's strong personal appeal complicates the tactical vote, so no recommendation can be made yet.`,
+  },
+  "E14001233": { // Fareham and Waterlooville — Suella Braverman
+    fires: (conProj, refProj) => conProj > refProj,
+    reason: `The Conservatives won this seat in 2024 and are projected ahead on national polling — but the incumbent, Suella Braverman, has since defected to Reform UK. Braverman's strong personal appeal complicates the tactical vote, so no recommendation can be made yet.`,
+  },
+  // Great Yarmouth — Reform won in 2024, but the MP (Rupert Lowe) has since left to
+  // start his own party, which could split Reform's vote. Flagged while Reform is still
+  // projected ahead of the Conservatives (if the Tories are already ahead, the standard
+  // logic recommends them anyway).
+  "E14001256": {
+    fires: (conProj, refProj) => refProj >= conProj,
+    reason: `Reform won this seat in 2024, but the incumbent MP, Rupert Lowe, has since defected to Restore Britain. With a sizeable chunk of Lowe's 2024 voters likely to vote for him again, it is not yet clear whether Reform or the Conservatives are the tactical vote here.`,
+  },
+};
+
+// National swing = now − 2024, per party
+function swing(party) {
+  return (POLLING.pollNow[party] || 0) - (POLLING.poll2024[party] || 0);
+}
+
+function getRecommendation(seat, options) {
+  options = options || {};
+  // Decisiveness gap, in priority order:
+  //   1. an explicit per-call override (by-elections pass 0)
+  //   2. the GE-imminent gap, if a general election has been called
+  //   3. the default wide gap
+  const decisiveGap = (typeof options.decisiveGap === "number") ? options.decisiveGap
+                    : GENERAL_ELECTION_IMMINENT ? GE_DECISIVE_GAP
+                    : DECISIVE_GAP;
+  const winner = seat.winner;
+  const byParty = {};
+  for (const r of seat.results) byParty[r.party] = r.share;
+  // (Left-consolidation danger is judged by unifiedLeftRisk, computed below.)
+
+  const con2024 = byParty["CON"] || 0;
+  const ref2024 = byParty["REF"] || 0;
+  const win2024 = seat.results[0].share; // winning party's 2024 share
+
+  // Apply national swings
+  const conProj = Math.max(0, con2024 + swing("CON"));
+  const refProj = Math.max(0, ref2024 + swing("REF"));
+  // Winner's projected share — only Labour gets a swing; others held at 2024
+  // (we don't model SNP/LD/Green moves, so for those the gate is conservative)
+  const winProj = (winner === "LAB")
+    ? Math.max(0, win2024 + swing("LAB"))
+    : win2024;
+
+  const proj = { conProj, refProj, winProj };
+
+  // SPEAKER'S SEAT: the Commons Speaker stands as "The Speaker seeking re-election", and
+  // by long-standing convention the major parties do not field candidates against them.
+  // There is therefore no tactical vote to model here — short-circuit before any other
+  // logic (the 2024 party data is essentially meaningless for this purpose). Keyed by
+  // ONS code: Chorley (E14001170), Sir Lindsay Hoyle.
+  if (seat.ons_id === "E14001170") {
+    return {
+      party: null,
+      type: "speaker",
+      headline: "This is the Speaker's seat",
+      reason: `The current MP for this seat is Sir Lindsay Hoyle, the Speaker of the House of Commons. By convention, major parties do not field candidates against the Speaker, so there is no tactical vote to be cast here.`,
+      proj,
+    };
+  }
+
+  // DEFECTION CARVE-OUT: if this seat's sitting MP has switched party since 2024, the
+  // personal vote that move carries can't be captured by uniform national swing, which
+  // muddies the tactical pick. Each entry defines its own firing gate (so the flag
+  // drops away once the projection makes it moot) and its own explanatory note. Flagged
+  // as unresolved rather than forcing a recommendation either way.
+  const defector = DEFECTORS[seat.ons_id];
+  if (defector && defector.fires(conProj, refProj)) {
+    return {
+      party: null,
+      type: "defection",
+      headline: "Tactical vote complicated by defection",
+      reason: defector.reason,
+      proj,
+    };
+  }
+
+  // COMBINED PROJECTED LEFT (Labour swung + Lib Dem + Green at 2024). Still used by
+  // the "clear of the coalesced left" safety margins (clearOfCoalescedLeft). Note the
+  // headline left-consolidation danger is judged by unifiedLeftRisk below, which uses
+  // the raw (un-swung) bloc — the more realistic, pessimistic measure.
+  let combinedLeftProj = 0;
+  for (const r of seat.results) {
+    if (r.party === "LAB" || r.party === "LD" || r.party === "GRN") {
+      combinedLeftProj += (r.party === "LAB") ? Math.max(0, r.share + swing("LAB")) : r.share;
+    }
+  }
+
+  // UNIFIED-LEFT RISK (raw, un-swung): a right-won seat is not truly safe if the RAW
+  // (2024) combined centre-left — Labour + Lib Dem + Green, no swing applied — would
+  // beat the strongest single right party's projection should the left coalesce behind
+  // one candidate. We use the raw bloc rather than the swung one because the realistic
+  // behaviour, in a seat where Labour's own chances are hopeless, is that disillusioned
+  // Labour voters lend their vote to the best-placed anti-right candidate (typically the
+  // Lib Dems) rather than vanishing. Used both to refuse to call such seats "safe" and,
+  // where a recommendation is still made, to flag the danger in the reason text. Either
+  // Labour or the Lib Dems could be the bloc's standard-bearer, so wording stays neutral.
+  let rawLeftBloc = 0;
+  for (const r of seat.results) {
+    if (r.party === "LAB" || r.party === "LD" || r.party === "GRN") rawLeftBloc += r.share;
+  }
+  const unifiedLeftRisk = (winner === "CON" || winner === "REF")
+    && rawLeftBloc > Math.max(conProj, refProj);
+
+  // ── CASE 1: a right-of-centre party already won in 2024 ──
+  // "Safe" (no tactical vote needed) if the winning right party led the strongest
+  // NON-right party (Lab/LD/Green/SNP/PC) by a comfortable margin in 2024. We do
+  // NOT otherwise favour the incumbent: a narrowly-held seat falls through to the
+  // normal projection comparison, so whichever right party is actually best placed
+  // is recommended — no incumbency bias. The one exception is a Conservative seat
+  // the Lib Dems nearly took, which is handled by the Lib Dem carve-out below.
+  if (winner === "CON" || winner === "REF") {
+    const RIGHT = { CON: true, REF: true };
+    let topLeftShare = 0;
+    for (const r of seat.results) {
+      if (!RIGHT[r.party] && r.share > topLeftShare) topLeftShare = r.share;
+    }
+    const marginOverLeft = win2024 - topLeftShare;
+
+    // SCOTTISH SNP CARVE-OUT: in a seat the Conservatives won with the SNP second in
+    // 2024, the SNP is the standing threat. Recommend Conservative regardless of the
+    // margin — Scottish seats are more fragmented and the independence axis cuts
+    // across left/right, so we don't trust a comfortable-looking lead to be safe, and
+    // we don't model a "left coalition" here (Lab/LD voters won't reliably switch to
+    // the SNP). Fires only when Reform isn't projected ahead of the Conservatives; if
+    // Reform leads, the normal projection comparison should pick it instead.
+    const secondParty2024 = seat.results[1] && seat.results[1].party;
+    if (winner === "CON" && secondParty2024 === "SNP" && conProj >= refProj) {
+      return {
+        party: "CON",
+        type: "snp_carveout",
+        headline: "Vote Conservative to beat the SNP",
+        reason: `The SNP are the main challenger here. The Conservatives are the best-placed party to keep them out.`,
+        proj,
+      };
+    }
+
+    // PROJECTION-BASED CONSERVATIVE–REFORM CONTEST: regardless of who came second
+    // in 2024, if BOTH right parties are projected at least RIGHT_CONTEST_MARGIN
+    // points above the strongest single left party's projection, AND both are at
+    // least RIGHT_CONTEST_COALESCE_MARGIN points above the combined left even if
+    // it perfectly coalesced, the real contest is right-vs-right. This catches
+    // seats where the left ran the right close in 2024 but has since collapsed
+    // while Reform has surged.
+    let topLeftProjShare = 0;
+    for (const r of seat.results) {
+      if (!RIGHT[r.party]) {
+        const pr = (r.party === "LAB") ? Math.max(0, r.share + swing("LAB")) : r.share;
+        if (pr > topLeftProjShare) topLeftProjShare = pr;
+      }
+    }
+    const bothRightClearOfLeft =
+      conProj >= topLeftProjShare + RIGHT_CONTEST_MARGIN &&
+      refProj >= topLeftProjShare + RIGHT_CONTEST_MARGIN &&
+      // both must also beat the perfectly-coalesced left (Lab proj + LD + Green)
+      // with a safety margin — a seat isn't truly a right-vs-right contest if a
+      // united left could realistically take it
+      conProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN &&
+      refProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN;
+    if (bothRightClearOfLeft) {
+      return { ...RIGHT_CONTEST_RESULT, proj };
+    }
+
+    // UNIFIED-LEFT RISK: the raw (un-swung) centre-left bloc — Labour + Lib Dem +
+    // Green — would beat the strongest right party if it united behind one of them.
+    // The seat looks safe (or looks like a Con-vs-LD carve-out) only because the model
+    // otherwise crushes Labour's share with the national swing; in reality those
+    // voters are likely to back the best-placed anti-right candidate. Checked OUTSIDE
+    // the SAFE_MARGIN gate so it catches narrowly-held right seats too (e.g. Exmouth
+    // and Exeter East, won by ~0.2pts), which would otherwise fall through to the LD
+    // carve-out and be mislabelled. Recommend the stronger right party; "hold" if it's
+    // the incumbent, "take" if not. We avoid "beat Labour" since the bloc's eventual
+    // standard-bearer could be the Lib Dems instead.
+    // Where the LIB DEMS were the 2024 runner-up AND clearly led Labour (by at least
+    // LD_LEADS_LABOUR_GAP points), this is the Lib Dem carve-out's territory, not the
+    // unified-left case — the LDs are the established main challenger and their voters
+    // consolidate behind the Conservatives directly. So we skip the unified-left branch
+    // for those seats, letting them fall through to the LD carve-out further down. The
+    // unified-left framing is kept for seats where the runner-up was someone else
+    // (usually Labour), OR where the LDs came second but only narrowly ahead of Labour
+    // (so the broad left has no clear single challenger yet). E.g. East Hampshire
+    // (LD ~25pts ahead of Labour → carve-out) vs East Grinstead (~0.8pts → unified-left).
+    const secondParty2024ul = seat.results[1] && seat.results[1].party;
+    const ldShareUL = (seat.results.find(r => r.party === "LD") || {}).share || 0;
+    const labShareUL = (seat.results.find(r => r.party === "LAB") || {}).share || 0;
+    const ldIsClearChallenger = (secondParty2024ul === "LD")
+      && (ldShareUL - labShareUL >= LD_LEADS_LABOUR_GAP);
+    if (unifiedLeftRisk && !ldIsClearChallenger) {
+      // Which right party to back? Normally the stronger-projected one. BUT if the
+      // Lib Dems out-polled Reform in this seat in 2024, this is LD-friendly territory
+      // where Reform's national surge doesn't translate locally and LD/Labour-leaning
+      // voters consolidate behind the Conservatives, not Reform — so recommend the
+      // Conservatives even if Reform projects marginally higher. (Same reasoning as the
+      // Lib Dem presence carve-out.) E.g. Exmouth and Exeter East, a Con/LD marginal
+      // where Con and Reform project near-tied but Reform is a distant local force.
+      const ldRaw = (seat.results.find(r => r.party === "LD") || {}).share || 0;
+      const refRaw = (seat.results.find(r => r.party === "REF") || {}).share || 0;
+      const ldForcesCon = (ldRaw > refRaw);
+
+      // When the pick between Con and Reform is decided purely on projection (i.e. NOT
+      // forced to Con by the LD logic above), it must clear the same decisiveness gap
+      // used everywhere else — there's no reason to drop the certainty threshold just
+      // because the better-placed right party isn't the incumbent. If the two right
+      // parties are within the gap (compared on the SAME rounded figures shown in the
+      // panel), fall through to the normal logic, which will flag it "no clear pick yet".
+      // The LD-forced-Con path is exempt: it's about LD-friendly territory, not the
+      // projection margin, so it stays decisive regardless of the Con/Reform gap.
+      const rightDisplayGap = Math.abs(Math.round(refProj) - Math.round(conProj));
+      if (!ldForcesCon && rightDisplayGap < decisiveGap) {
+        // too close to call between Con and Reform — let it fall through
+      } else {
+        const holdLeader = ldForcesCon ? "CON"
+                         : (refProj >= conProj) ? "REF" : "CON";
+        // "hold this seat" when recommending the incumbent's own party; otherwise the
+        // recommended right party didn't win here in 2024 (e.g. Reform in a seat the
+        // Conservatives won), so "win this seat" — avoiding "take", which would imply
+        // wresting it from the left.
+        const ulHeadline = (holdLeader === winner)
+          ? `Vote ${partyLabel(holdLeader)} to hold this seat`
+          : `Vote ${partyLabel(holdLeader)} to win this seat`;
+        // Three explanation variants:
+        //  (a) Recommending Con while Reform is projected ahead → the strong local Lib
+        //      Dem presence is why Con beats Reform as the right's pick. (Override case.)
+        //  (b) Recommending REFORM in a seat the CONSERVATIVES won in 2024 → acknowledge
+        //      the apparent oddity (the 2024 winner isn't our pick) and explain it: Reform
+        //      is now projected well ahead. Name Labour only if they were a top-3 force
+        //      here in 2024; otherwise the neutral "keep the Left out".
+        //  (c) Otherwise → the generic "safest way to keep this seat in the Right's hands".
+        const projLeaderUL = (refProj > conProj) ? "REF" : (conProj > refProj) ? "CON" : null;
+        const overridingProjection = projLeaderUL && holdLeader !== projLeaderUL;
+        const ldIsStrongHere = (holdLeader === "CON" && ldRaw > refRaw && overridingProjection);
+        const top3PartiesUL = seat.results.slice(0, 3).map(r => r.party);
+        const labInTop3UL = top3PartiesUL.includes("LAB");
+        const refInConSeat = (holdLeader === "REF" && winner === "CON");
+        let ulReason;
+        if (ldIsStrongHere) {
+          ulReason = `The left could win here if they better unite behind a single candidate. The Liberal Democrats out-polled Reform UK in this seat in 2024. ${LD_SWITCH_RATIONALE}`;
+        } else if (refInConSeat) {
+          const keepOut = labInTop3UL ? "keep Labour out here" : "keep the Left out here";
+          ulReason = `Even though the Conservatives won this seat in 2024, Reform is now projected ahead. A vote for Reform is therefore the best way to ${keepOut}.`;
+        } else {
+          ulReason = `The left could win here if they better unite behind a single candidate. A vote for ${partyProse(holdLeader)} is the safest way to keep this seat in the Right's hands.`;
+        }
+        return {
+          party: holdLeader,
+          type: "unified_left",
+          headline: ulHeadline,
+          reason: ulReason,
+          proj,
+        };
+      }
+    }
+
+    if (marginOverLeft > SAFE_MARGIN) {
+      // Normally a safe "held" seat. Two reasons to still treat it as contested
+      // and fall through to the projection logic:
+      //   (a) TOSS-UP: the two right parties are projected close AND both clear of
+      //       the left — better described as "either works".
+      //   (b) UNIFIED-LEFT RISK (unifiedLeftRisk, computed up front): the raw combined
+      //       left could overtake the strongest right party if it coalesced, so
+      //       "no tactical vote needed" would be unsafe.
+      const weakerRightP = Math.min(conProj, refProj);
+      const gapP = Math.abs(conProj - refProj);
+      let topLeftProjP = 0;
+      for (const r of seat.results) {
+        if (!RIGHT[r.party]) {
+          const pr = (r.party === "LAB") ? Math.max(0, r.share + swing("LAB")) : r.share;
+          if (pr > topLeftProjP) topLeftProjP = pr;
+        }
+      }
+      const deferToTossup = (gapP < DECISIVE_GAP) && (weakerRightP - topLeftProjP >= TOSSUP_SAFE_LEAD);
+
+      // Additional reason to fall through: Con-held seat where the Lib Dems came second.
+      // The uniform swing model holds the LD vote flat, but in practice Labour-to-LD
+      // defection can erode the Con-LD margin in ways the model misses. These seats
+      // should always reach the LD carve-out logic, which will recommend Conservative.
+      const secondParty = seat.results[1] && seat.results[1].party;
+      const ldIsSecond = (winner === "CON" && secondParty === "LD");
+
+      // CONSERVATIVE–REFORM CONTEST: the top two parties in 2024 were the two right
+      // parties (either order), and the left is comfortably behind. The seat isn't
+      // at risk from the left at all — the real contest is right-vs-right, which is
+      // a more informative message than a generic "no tactical vote needed". Takes
+      // precedence over the plain "held" return (it's a more specific description),
+      // and also over deferToTossup (same situation, better framing). E.g. Clacton.
+      // Same coalesced-left guard as the projection-based rule above.
+      const topTwo2024 = seat.results.slice(0, 2).map(r => r.party);
+      const bothRightTopTwo = topTwo2024.includes("CON") && topTwo2024.includes("REF");
+      const clearOfCoalescedLeft =
+        conProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN &&
+        refProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN;
+      if (bothRightTopTwo && clearOfCoalescedLeft) {
+        return { ...RIGHT_CONTEST_RESULT, proj };
+      }
+
+      // UNIFIED-LEFT RISK is now checked earlier (outside this gate), so it has
+      // already returned for any at-risk seat by the time we reach here.
+
+      if (!deferToTossup && !unifiedLeftRisk && !ldIsSecond) {
+        return {
+          party: null,
+          type: "held",
+          headline: "No tactical vote needed here",
+          reason: `This seat is held by ${partyProse(winner)} with a comfortable lead over the nearest challenger from the left. It is not realistically at risk, so there's no need to vote tactically.`,
+          proj,
+        };
+      }
+      // else: fall through to Case 3 (toss-up wording, a recommendation with the
+      // consolidation-risk explanation, or the LD carve-out for Con-held LD-challenger seats).
+    }
+    // Otherwise: contested. Fall through to the normal logic below, which treats
+    // this seat neutrally (the Lib Dem carve-out and projection comparison handle it).
+  }
+
+  // ── CASE 2: no right-of-centre challenger stood ──
+  if (con2024 === 0 && ref2024 === 0) {
+    return {
+      party: null, type: "none",
+      headline: "No right-of-centre option here",
+      reason: "Neither the Conservatives nor Reform UK stood a candidate here in 2024, so there is no right-of-centre tactical vote to recommend.",
+      proj,
+    };
+  }
+
+  // ── CASE 3: assess the right-of-centre challenger ──
+  // The "opponent" is the strongest NON-right party — the party a tactical vote
+  // needs to beat. Usually this is the seat winner, but for a contested right-held
+  // seat that fell through from Case 1, it's the leading left/centre challenger.
+  const RIGHT3 = { CON: true, REF: true };
+  let opponent = null, opponentShare = 0, opponent2024 = 0;
+  for (const r of seat.results) {
+    if (!RIGHT3[r.party] && r.share > opponent2024) {
+      opponent2024 = r.share; opponent = r.party;
+    }
+  }
+  // Project the opponent: only Labour gets a swing (others held at 2024, as before).
+  const opponentProj = (opponent === "LAB")
+    ? Math.max(0, opponent2024 + swing("LAB"))
+    : opponent2024;
+
+  const leader   = (refProj >= conProj) ? "REF" : "CON";
+  const gap      = Math.abs(refProj - conProj);
+  // The decisiveness ("too close to call") test compares Con and Reform using the
+  // SAME rounded figures shown in the projection panel, not the raw values. This
+  // avoids the misleading case where, say, 24.66 vs 29.63 (a real 4.97pt gap, so
+  // "within 5") displays as 25 vs 30 — which a reader subtracts to exactly 5 and
+  // sees as a contradiction. Only this user-visible Con-vs-Reform comparison is
+  // rounded; the other thresholds (winnability, left-consolidation, etc.) keep using
+  // raw projections, since they don't display the two figures being compared.
+  const displayGap = Math.abs(Math.round(refProj) - Math.round(conProj));
+  const combinedRight = conProj + refProj;
+  const winnerLeadOverRight = opponentProj - combinedRight;
+  // The relative winnability gap is wider when the opponent is the Lib Dems (their
+  // vote is held flat while the right swings, so the modelled gap is pessimistic about
+  // the right), and tighter when Labour is the INCUMBENT (the projection flatters the
+  // right — Labour swung down, Reform swung up, then both right parties summed — so a
+  // smaller gap is enough to call the seat unwinnable). LD-opponent takes precedence on
+  // the rare Labour-won seat where the Lib Dems are the standing challenger.
+  const winnableGap = (opponent === "LD") ? WINNABLE_GAP_LD
+                    : (winner === "LAB")  ? WINNABLE_GAP_LAB
+                    : WINNABLE_GAP;
+
+  // Scotland-specific hopelessness: if the SNP and another party of the left/centre
+  // (Labour or the Lib Dems) were the top two parties in 2024 (either order) and
+  // together took more than LEFT_DOMINANCE% of the vote, it's a contest between two
+  // such parties that the right can't realistically break into. (Almost always
+  // SNP–Labour, but occasionally SNP–Lib Dem in the Highlands.)
+  const topTwoParties = seat.results.slice(0, 2).map(r => r.party);
+  const snpInTopTwo = topTwoParties.includes("SNP");
+  // The SNP's partner in the top two, if it's Labour or the Lib Dems.
+  const snpPartner = topTwoParties.find(p => p === "LAB" || p === "LD") || null;
+  const partnerShare = snpPartner ? ((seat.results.find(r => r.party === snpPartner) || {}).share || 0) : 0;
+  const snpShare2024 = (seat.results.find(r => r.party === "SNP") || {}).share || 0;
+  const snpPairShare = snpShare2024 + partnerShare;
+  // Require the partner to have been a genuine contender (not just a weak second
+  // behind a dominant SNP), so safe-SNP seats aren't mislabelled.
+  const snpLeftDominated = snpInTopTwo && snpPartner
+    && snpPairShare > LEFT_DOMINANCE && partnerShare >= SNPLAB_MIN_LAB;
+
+  // 3a. Hopeless — either the opponent leads the combined right by more than the
+  // (opponent-dependent) winnable gap, or it's an SNP-dominated Scottish contest.
+  const farBehind = winnerLeadOverRight > winnableGap;
+  if (farBehind || snpLeftDominated) {
+    let hopelessReason;
+    let hopelessHeadline = "No tactical vote — not winnable here";
+    if (snpLeftDominated) {
+      // SNP-dominated Scottish seat (partner = Labour or the Lib Dems). Takes
+      // precedence over the generic message: a single sentence carries both the
+      // winnability point and the independence dimension.
+      const partnerLabel = (snpPartner === "LD") ? "Lib Dem" : "Labour";
+      hopelessHeadline = `Likely SNP–${partnerLabel} contest`;
+      hopelessReason = `This seat is likely to be a contest between ${partyProse(snpPartner)} and the SNP, so tactical voting here is complicated by the question of independence.`;
+    } else {
+      // The single leading party is simply too far ahead of the united right.
+      const oppProse = partyProse(opponent);
+      const oppCapitalised = oppProse.charAt(0).toUpperCase() + oppProse.slice(1);
+      hopelessReason = `${oppCapitalised} ${partyPlural(opponent) ? "are" : "is"} too far ahead for the right to realistically win, even if every Conservative and Reform UK voter united behind one candidate. Tactical voting can't change the result here.`;
+    }
+    return {
+      party: null, type: "hopeless",
+      headline: hopelessHeadline,
+      reason: hopelessReason,
+      // Set when this is an SNP–Labour or SNP–Lib Dem contest, so the renderer
+      // can apply the party-striped banner background ("LAB" or "LD").
+      snpContestPartner: snpLeftDominated ? snpPartner : null,
+      proj,
+    };
+  }
+
+  // 3a-ii. LIB DEM CARVE-OUT.
+  // Fires when the Lib Dems are the opponent to beat — either they won the seat,
+  // or the Conservatives won it but the Lib Dems are the close challenger. In this
+  // Remain-leaning, centrist territory Reform's national surge doesn't translate
+  // into local support, so the Conservatives are the only realistic right-of-centre
+  // vehicle. For a Con-won seat we only treat it this way if the projected gap is
+  // tight (≤ CARVEOUT_GAP); a comfortable Con win was already handled in Case 1.
+  // The full consolidation message is always shown here — even when the
+  // Conservatives are already projected ahead of Reform — to make the case to any
+  // Reform-inclined voter for why the Conservatives are the right tactical choice.
+  const ldIsOpponent = (opponent === "LD");
+  const conLeadsLD = conProj - opponent2024; // opponent2024 == LD's 2024 share here
+  if (ldIsOpponent && (winner === "LD" || conLeadsLD <= CARVEOUT_GAP)) {
+    return {
+      party: "CON",
+      type: "ld_carveout",
+      headline: `Vote Conservative to beat the Liberal Democrats`,
+      reason: `The Liberal Democrats are the main challenger here. ${LD_SWITCH_RATIONALE}`,
+      proj,
+    };
+  }
+
+  // Lib Dem and Reform 2024 shares, for the Lib-Dem-presence carve-out below.
+  const ldShare2024 = (seat.results.find(r => r.party === "LD") || {}).share || 0;
+  const refShare2024 = (seat.results.find(r => r.party === "REF") || {}).share || 0;
+
+  // Guard for the "LD out-polled Reform → recommend Con" carve-outs below: those rest on
+  // the Conservatives being a credible right-of-centre anchor. That assumption breaks if
+  // the Tories finished behind BOTH the Lib Dems and Reform in 2024 (i.e. came third of
+  // the three) — recommending a tactical Con vote there is absurd (e.g. Cardiff East,
+  // Con fifth on 10%). Where this holds, the LD carve-outs are skipped.
+  const conBehindBothRight = (con2024 < ldShare2024 && con2024 < refShare2024);
+
+  // 3b. SAFE FOR THE RIGHT: if even the WEAKER right party comfortably leads the
+  // projected strongest-left party, the seat is won by the right however the vote
+  // splits — so tactical voting isn't needed at all. (This is checked before the
+  // "too close to call" case, and independently of how far apart Con and Reform
+  // are: tactical voting is a cost people only take on when the split could let
+  // the left in, which here it can't.) The gap between the two right parties only
+  // decides the wording — a genuine toss-up when close, simply "safe" when not.
+  // The coalesced-left guard (both right parties ≥ RIGHT_CONTEST_COALESCE_MARGIN
+  // above the perfectly-united left) is applied here too, so this route uses the
+  // same definition of "safe from the left" as the Case 1 rightcontest rule.
+  const weakerRight = Math.min(conProj, refProj);
+  const clearOfCoalescedLeft =
+    conProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN &&
+    refProj >= combinedLeftProj + RIGHT_CONTEST_COALESCE_MARGIN;
+  if (!unifiedLeftRisk && clearOfCoalescedLeft
+      && weakerRight - opponentProj >= TOSSUP_SAFE_LEAD) {
+    // Both right parties are clear of the coalesced left, so the left can't win
+    // this seat however the vote splits — it's a right-vs-right contest. This holds
+    // whether the two right parties are neck-and-neck or one is well ahead: either
+    // way there's no anti-left tactical vote to cast, only a choice of which right
+    // party. Same headline/reason (and striped banner) as the Case 1 rightcontest.
+    return { ...RIGHT_CONTEST_RESULT, proj };
+  }
+
+  // 3b-i. REFORM TOO SMALL IN 2024 TO BE CREDIBLE.
+  // The right vote is split and Reform is projected ahead of the Conservatives on
+  // national swing — but Reform polled under 10% here in 2024, off too low a base to
+  // realistically win the seat (a party rarely leaps from a single-digit share to
+  // first). Provided the Conservatives polled a respectable share (over 15%) in 2024,
+  // they are the credible right-of-centre challenger, so recommend them. This reads as
+  // more intuitive reasoning than the Lib-Dem-vs-Reform comparison below, and is
+  // checked first. The Con floor (15%) guards against odd cases — e.g. Reform on 9%,
+  // Con on 11% — where defaulting to Con would be unjustified.
+  if (!ldIsOpponent
+      && refProj > conProj
+      && refShare2024 < 10
+      && con2024 > 15) {
+    let refLowReason = `Reform UK received under 10% of the vote in this seat in 2024. It is very unlikely that they can win the seat from this baseline, which makes the Conservatives the best-placed right-of-centre party to take this seat.`;
+    if (unifiedLeftRisk) {
+      refLowReason = `The left could win here if they better unite behind a single candidate, so a tactical vote still matters. ${refLowReason}`;
+    }
+    return {
+      party: "CON",
+      type: "ld_carveout",
+      headline: `Vote Conservative to take this seat`,
+      reason: refLowReason,
+      proj,
+    };
+  }
+
+  // 3b-ii. LIB DEM PRESENCE CARVE-OUT.
+  // The seat isn't safe for the right (handled above), the right vote is split, and
+  // the Lib Dems out-polled Reform in 2024 — a meaningful Lib Dem bloc whose voters
+  // consolidate behind the Conservatives, not Reform. So the Conservatives are the
+  // better anti-left vehicle even if Reform is projected slightly ahead, PROVIDED
+  // they aren't projected to trail Reform by more than LD_PRESENCE_MAX_CON_DEFICIT.
+  // Only fires when Reform is actually projected AHEAD of the Conservatives (so the
+  // carve-out genuinely changes the pick from Reform to Con). If the Conservatives
+  // are already ahead, they'd be recommended anyway — fall through to the normal
+  // logic so the standard message is shown, not the consolidation rationale.
+  // The carve-out fires if:
+  //   (a) the LD-over-Reform margin is clear (≥ LD_PRESENCE_CLEAR_GAP) — large LD bloc, always override, OR
+  //   (b) the LD-over-Reform margin is smaller but the Con deficit behind Reform is within the cap
+  const ldOverRef = ldShare2024 - refShare2024;
+  const ldClearlyAhead = ldOverRef >= LD_PRESENCE_CLEAR_GAP;
+  if (!ldIsOpponent && !conBehindBothRight && ldShare2024 > refShare2024
+      && refProj > conProj
+      && (ldClearlyAhead || (refProj - conProj) <= LD_PRESENCE_MAX_CON_DEFICIT)) {
+    let ldpReason = `The Liberal Democrats out-polled Reform UK in this seat in 2024. ${LD_SWITCH_RATIONALE}`;
+    if (unifiedLeftRisk) {
+      ldpReason = `The left could win here if they better unite behind a single candidate, so a tactical vote still matters. ${ldpReason}`;
+    }
+    // If Labour won but their projected share has dropped below the LDs' 2024 share,
+    // "beat Labour" is misleading — they're no longer the realistic top challenger.
+    // "Beat the Lib Dems" is equally odd since the LD presence is WHY we recommend Con.
+    // In this specific scenario, use a neutral "take this seat" framing instead.
+    const labProjBelowLD = (opponent === "LAB")
+      && (Math.max(0, opponent2024 + swing("LAB")) < ldShare2024);
+    const ldpHeadline = labProjBelowLD
+      ? `Vote Conservative to take this seat`
+      : `Vote Conservative to beat ${partyProse(opponent)}`;
+    return {
+      party: "CON",
+      type: "ld_carveout",
+      headline: ldpHeadline,
+      reason: ldpReason,
+      proj,
+    };
+  }
+
+  // 3c. Too close to call: the right parties are close to each other AND not
+  // safely clear of the left, so which one a tactical voter backs genuinely matters.
+  if (displayGap < decisiveGap) {
+    // TIEBREAKER: if the Lib Dems out-polled Reform here in 2024, that breaks the
+    // Con/Reform tie toward the Conservatives (same reasoning as the Lib Dem carve-out
+    // — this is LD-friendly territory where the LD/centre vote consolidates behind the
+    // Conservatives, not Reform). So rather than "no clear pick yet", recommend Con.
+    // E.g. Battersea, where Con and Reform project near-tied but the LDs beat Reform.
+    if (!ldIsOpponent && !conBehindBothRight && ldShare2024 > refShare2024) {
+      // Prefer the clearer "Reform too small in 2024 to credibly win" reasoning where
+      // it applies (Reform under 10% and the Conservatives a respectable 2024 share);
+      // it reads more intuitively than the Lib-Dem-vs-Reform comparison. Otherwise fall
+      // back to the Lib Dem reasoning (e.g. seats where both LD and Reform polled well).
+      const refLowApplies = (refShare2024 < 10 && con2024 > 15);
+      let ldTieReason, ldTieHeadline;
+      if (refLowApplies) {
+        ldTieReason = `Reform UK received under 10% of the vote in this seat in 2024. It is very unlikely that they can win the seat from this baseline, which makes the Conservatives the best-placed right-of-centre party to take this seat.`;
+        ldTieHeadline = `Vote Conservative to take this seat`;
+      } else {
+        ldTieReason = `The Liberal Democrats out-polled Reform UK in this seat in 2024. ${LD_SWITCH_RATIONALE}`;
+        ldTieHeadline = `Vote Conservative to beat ${partyProse(opponent)}`;
+      }
+      if (unifiedLeftRisk) {
+        ldTieReason = `The left could win here if they better unite behind a single candidate, so a tactical vote still matters. ${ldTieReason}`;
+      }
+      return {
+        party: "CON",
+        type: "ld_carveout",
+        headline: ldTieHeadline,
+        reason: ldTieReason,
+        proj,
+      };
+    }
+    let tcReason = `The Conservatives and Reform UK are projected to run within ${decisiveGap} points of each other here, so it isn't yet clear which is better placed to beat ${partyProse(opponent)}. Check back nearer the election as the picture sharpens.`;
+    if (unifiedLeftRisk) {
+      tcReason = `The left could win here if they better unite behind a single candidate, so a tactical vote still matters. ${tcReason}`;
+    }
+    return {
+      party: null, type: "tooclose",
+      headline: "No clear tactical vote yet — check back later",
+      reason: tcReason,
+      proj,
+    };
+  }
+
+  // 3c. Clear recommendation
+  const recLabel = partyLabel(leader);
+  // Natural phrasing for both the leader (subject) and the trailing party (object)
+  const recSubject = (leader === "CON") ? "the Conservatives are" : "Reform UK is";
+  const otherLabel = (leader === "REF") ? "the Conservatives" : "Reform UK";
+  // A "thin lead" is one that only clears the (reduced) gap in force — it would
+  // have been "too close to call" under the normal wide gap. This happens for
+  // by-elections and once a general election is imminent, where a pick is forced.
+  const thinLead = displayGap < DECISIVE_GAP;
+  let reason;
+  if (options.byelection) {
+    reason = `Once current polling is taken into account, ${recSubject} projected ahead of ${otherLabel} as the right-of-centre challenger best placed to beat ${partyProse(opponent)} here. Because this by-election is imminent, a firm recommendation is made rather than waiting for the picture to settle.`;
+  } else if (GENERAL_ELECTION_IMMINENT && thinLead) {
+    reason = `The projection here narrowly favours ${partyProse(leader)} over ${otherLabel} as the right-of-centre challenger best placed to beat ${partyProse(opponent)}. The margin is slim, so the picture could shift, but ${partyProse(leader)} ${partyPlural(leader) ? "are" : "is"} the stronger tactical choice on current polling.`;
+  } else {
+    reason = `Once current polling is taken into account, ${recSubject} projected ahead of ${otherLabel} as the right-of-centre challenger best placed to beat ${partyProse(opponent)} here.`;
+  }
+  if (unifiedLeftRisk) {
+    reason = `The left could win here if they better unite behind a single candidate, so a tactical vote still matters. ${reason}`;
+  }
+  return {
+    party: leader,
+    type: "challenger",
+    headline: `Vote ${recLabel} to beat ${partyProse(opponent)}`,
+    reason: reason,
+    proj,
+  };
+}
+
+// ── SEAT-SPECIFIC NOTES ───────────────────────────────────────────────────────
+// Optional factual notes shown in the "story of this seat" panel for particular
+// constituencies, keyed by ONS code. Currently unused. To add one later:
+//   "E14001256": "Your neutral, factual note here.",
+const SEAT_NOTES = {
+};
+
+// ── UPCOMING BY-ELECTIONS ─────────────────────────────────────────────────────
+// Single source of truth for by-elections. To add one, copy an entry and fill in:
+//   ons_id   — must exist in results.js (the constituency's 2024 ONS code)
+//   name     — display name
+//   date     — polling day in ISO format "YYYY-MM-DD" (used for auto-expiry)
+//   day/month— what shows in the calendar block on the banner
+//   holder   — party currently holding the seat (for the colour + "held by" line)
+//   recommend— "CON", "REF", or null (null = no tactical vote, shown grey)
+// Entries auto-expire: once polling day has passed, a by-election is no longer
+// shown on the banner and no longer gets the firm-pick override — it reverts to a
+// normal seat automatically, with no manual editing needed.
+const BYELECTIONS = [
+  {
+    ons_id: "E14001350",
+    name: "Makerfield",
+    date: "2026-06-18",
+    day: "18", month: "Jun",
+    holder: "LAB",
+    recommend: "REF",
+    note: "Reform were a clear second here in 2024 and have surged since — they are best placed to beat the left.",
+  },
+  {
+    ons_id: "S14000061",
+    name: "Aberdeen South",
+    date: "2026-06-18",
+    day: "18", month: "Jun",
+    holder: "SNP",
+    recommend: "CON",
+    note: "The Conservatives were second to the SNP in 2024, with Reform a distant fifth — the Tories are the tactical choice.",
+  },
+  {
+    ons_id: "S14000066",
+    name: "Arbroath and Broughty Ferry",
+    date: "2026-06-18",
+    day: "18", month: "Jun",
+    holder: "SNP",
+    recommend: null,
+    note: "The SNP and Labour together took 69% of the vote in 2024. No right-of-centre party is within range, so tactical voting can't change the outcome here.",
+  },
+];
+
+// Returns only by-elections whose polling day is today or still in the future.
+// Past contests fall out automatically so nothing stale lingers on the site.
+function upcomingByelections() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return BYELECTIONS.filter(b => {
+    if (!b.date) return true; // no date given → always treat as upcoming (safe default)
+    const d = new Date(b.date + "T00:00:00");
+    return d >= today;
+  });
+}
+
+// Is a given seat (by ONS code) a currently-upcoming by-election?
+function byelectionFor(onsId) {
+  return upcomingByelections().find(b => b.ons_id === onsId) || null;
+}
+
+function renderByelections() {
+  const list = document.getElementById("bye-list");
+  const section = document.getElementById("byelections-section");
+  if (!list) return;
+
+  const upcoming = upcomingByelections();
+  // If there are no upcoming by-elections, hide the whole section.
+  if (upcoming.length === 0) {
+    if (section) section.style.display = "none";
+    return;
+  }
+  if (section) section.style.display = "";
+
+  const rows = upcoming.map(bye => {
+    const holderCol = partyColour(bye.holder);
+    const holderLabel = partyLabel(bye.holder);
+
+    let recBlock;
+    if (bye.recommend) {
+      const recCol = partyColour(bye.recommend);
+      const recLabel = partyLabel(bye.recommend);
+      recBlock = `
+        <div class="bye-rec">
+          <div class="bye-rec-label">Recommended vote</div>
+          <span class="bye-rec-pill" style="background:${recCol};"><i class="ti ti-circle-check"></i>Vote ${escHtml(recLabel)}</span>
+        </div>`;
+    } else {
+      recBlock = `
+        <div class="bye-rec">
+          <div class="bye-rec-label">Assessment</div>
+          <span class="bye-rec-pill bye-rec-none"><i class="ti ti-minus"></i>No tactical vote</span>
+        </div>`;
+    }
+
+    return `
+      <div class="bye-row"
+           style="--holder-col:${holderCol};"
+           onclick="openByelection('${bye.ons_id}')"
+           role="button" tabindex="0" data-ons="${bye.ons_id}">
+        <div class="bye-date">
+          <div class="bye-date-day">${bye.day}</div>
+          <div class="bye-date-mon">${bye.month}</div>
+        </div>
+        <div class="bye-mid">
+          <div class="bye-constituency">${escHtml(bye.name)} <i class="ti ti-arrow-right"></i></div>
+          <div class="bye-holder"><span class="bye-holder-dot"></span>Currently held by ${escHtml(holderLabel)}</div>
+        </div>
+        ${recBlock}
+      </div>`;
+  }).join("");
+
+  list.innerHTML = rows;
+
+  // Keyboard activation
+  list.querySelectorAll(".bye-row").forEach(row => {
+    row.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openByelection(row.dataset.ons); }
+    });
+  });
+}
+
+function openByelection(onsId) {
+  const seat = CONSTITUENCY_DATA[onsId];
+  if (!seat) {
+    showNoData(onsId);
+    scrollToResult();
+    return;
+  }
+  // By-elections are imminent: drop the decisiveness gap to 0 so a narrow but
+  // clear lead still produces a recommendation, and flag it as a by-election.
+  showResult(seat, { byelection: true, decisiveGap: 0 });
+}
+
+// Populate the "How the tactical vote is calculated" methodology block from POLLING
+// Build the methodology HTML (used by toggleMethod). Returns the inner markup for
+// a .method-block. Reads live POLLING figures so it always reflects current data.
+function buildMethodHtml() {
+  const s = POLLING;
+  function row(party, label) {
+    const a = s.poll2024[party], b = s.pollNow[party];
+    const sw = b - a;
+    const cls = sw >= 0 ? "sc-up" : "sc-down";
+    const sign = sw >= 0 ? "+" : "";
+    return `<div class="swing-cell">
+      <div class="sc-party">${label}</div>
+      <div class="sc-nums">2024: ${a}% → now: ${b}%<br><span class="sc-swing ${cls}">swing ${sign}${sw} pts</span></div>
+    </div>`;
+  }
+  return `
+    <p>Every recommendation here is produced by an objective algorithm applied identically to all seats — not by going through constituencies one by one and picking a favourite. That keeps the results consistent and free from personal bias.</p>
+    <p>Rather than relying on the 2024 result alone — which is now out of date — each seat is adjusted using a <strong>uniform national swing</strong>, the same method broadcasters use on election night. This takes how far each party's national vote share has moved since 2024 (according to ${s.source} voting intention, last updated ${s.updated}) and applies that shift to every constituency.</p>
+    <div class="swing-table">
+      ${row("REF", "Reform UK")}
+      ${row("CON", "Conservative")}
+      ${row("LAB", "Labour")}
+    </div>
+    <p>In each seat, the <strong>projected</strong> Conservative and Reform shares are then compared, and whichever is better placed to beat the sitting party is recommended. The Labour swing is used to judge whether a seat is realistically winnable.</p>
+    <p>The stronger right-of-centre party is recommended wherever one is in contention.${DECISIVE_GAP > 0 ? ` If the Conservatives and Reform UK are within ${DECISIVE_GAP} points of each other, the seat is called too close to call.` : ``} A seat is judged unwinnable — no tactical vote worth casting — if the winning party is projected to lead the combined Conservative and Reform vote by a clear margin, since even a fully united right could not catch them. Where the Conservatives or Reform already hold a seat comfortably over the left, no tactical vote is needed.</p>
+    <h3>The two deliberate exceptions</h3>
+    <p>First, where the Liberal Democrats either won the seat in 2024 or out-polled Reform UK there, the Conservatives are recommended over Reform. These are typically Remain-leaning, centrist areas where Reform's national rise does not translate into local support. Many of the 2024 Liberal Democrat voters in these seats were former Conservatives who had grown tired of the Conservative government, and — assuming many return at the next election — this makes the Conservatives, rather than Reform, the best-placed right-of-centre party to win them. Second, in Scottish seats likely to be contested between the SNP and either Labour or the Liberal Democrats, no recommendation is made: the right has no realistic path, and a tactical vote there is more likely to be influenced by the question of independence.</p>
+    ${SHOW_RANDOM_BUTTON ? `<h3>Test it yourself</h3>
+    <p>If you would like to test how the method holds up, use the <strong>Random seat</strong> button in the top-right corner of any result to jump straight to another constituency. Pressing it repeatedly lets you quickly sift through seats and judge for yourself whether the recommendations look sensible.</p>` : ``}
+    <h3>A work in progress</h3>
+    <p>With the next general election still some way off, the method will keep being refined — and the recommendations will become sharper and more reliable as polling firms up and the election draws nearer.</p>
+    <p class="method-note">Polling figures: ${s.source} voting intention, used under fair-dealing for the purpose of reporting and commentary. 2024 results: House of Commons Library (Open Parliament Licence). This is an independent editorial projection, not a prediction, and carries no guarantee of accuracy.</p>`;
+}
+
+// Toggle the methodology open/closed in place. Content is rendered lazily on
+// first open (so the page loads light), then simply shown/hidden after that.
+function toggleMethod() {
+  const card = document.getElementById("method-card");
+  const body = document.getElementById("method-body");
+  const toggle = card.querySelector("[data-method-toggle]");
+  const contentEl = document.getElementById("method-block-content");
+  const isOpen = card.classList.contains("open");
+
+  if (isOpen) {
+    card.classList.remove("open");
+    body.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.querySelector(".method-link-sub").textContent =
+      "Uniform national swing, the thresholds used, and the deliberate exceptions — click to expand.";
+  } else {
+    if (!contentEl.innerHTML) contentEl.innerHTML = buildMethodHtml();
+    card.classList.add("open");
+    body.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.querySelector(".method-link-sub").textContent = "Click to hide.";
+  }
+}
+
+// ── NATIONAL PICTURE ──────────────────────────────────────────────────────────
+// Aggregate every GB seat's recommendation into five user-facing buckets, with the
+// list of seats in each (for transparency / verifiability). Computed once, lazily.
+//
+// Bucket mapping from getRecommendation()'s {type, party}:
+//   Conservative          → any recommendation with party "CON"
+//   Reform UK             → any recommendation with party "REF"
+//   Con–Reform contest    → type "rightcontest" (vote for either)
+//   No clear pick yet      → types "tooclose" and "defection"
+//   Not winnable / no vote → types "hopeless", "speaker", "held", "none"
+// (The party-based buckets absorb challenger, ld_carveout, unified_left and
+//  snp_carveout automatically, since those carry a CON/REF party.)
+const NATPIC_BUCKETS = [
+  { key: "REF",     name: "Reform UK",               colour: PARTY.REF.colour, isParty: true,  tint: "rgba(23,185,209,0.07)", desc: "Vote Reform UK to win or hold the seat" },
+  { key: "CON",     name: "Conservative",            colour: PARTY.CON.colour, isParty: true,  tint: "rgba(10,61,143,0.09)",  desc: "Vote Conservative to win or hold the seat" },
+  { key: "CONTEST", name: "Conservative–Reform contest", colour: "#64748b",    isParty: false, tint: "linear-gradient(120deg, rgba(23,185,209,0.08) 0%, rgba(10,61,143,0.08) 100%)", desc: "A likely right-of-centre contest — vote for whichever party you prefer" },
+  { key: "UNCLEAR", name: "No clear pick yet",        colour: "#64748b",        isParty: false, tint: "rgba(100,116,139,0.05)", desc: "Too close to call, or complicated by a defection" },
+  { key: "NOVOTE",  name: "Not winnable", colour: "#64748b", isParty: false, tint: "linear-gradient(120deg, rgba(250,166,26,0.09) 0%, rgba(200,16,46,0.07) 100%)",  desc: "No realistic right-of-centre path, or no contest here" },
+];
+
+function bucketForRec(rec) {
+  if (rec.party === "CON") return "CON";
+  if (rec.party === "REF") return "REF";
+  if (rec.type === "rightcontest") return "CONTEST";
+  if (rec.type === "tooclose" || rec.type === "defection") return "UNCLEAR";
+  return "NOVOTE"; // hopeless, speaker, held, none
+}
+
+let NATPIC_DATA = null; // { counts: {key:n}, seats: {key:[{name,ons}]}, total }
+function computeNatpic() {
+  if (NATPIC_DATA) return NATPIC_DATA;
+  if (typeof CONSTITUENCY_DATA === "undefined") return null;
+  const counts = {}, seats = {};
+  for (const b of NATPIC_BUCKETS) { counts[b.key] = 0; seats[b.key] = []; }
+  let total = 0;
+  for (const [ons, s] of Object.entries(CONSTITUENCY_DATA)) {
+    const ons_id = s.ons_id || ons;
+    if (typeof ons_id === "string" && ons_id.charAt(0) === "N") continue; // skip NI
+    let rec;
+    try { rec = getRecommendation(s); } catch (e) { continue; }
+    const key = bucketForRec(rec);
+    counts[key]++;
+    seats[key].push({ name: s.name || ons_id, ons: ons_id });
+    total++;
+  }
+  for (const k of Object.keys(seats)) seats[k].sort((a, b) => a.name.localeCompare(b.name));
+  NATPIC_DATA = { counts, seats, total };
+  return NATPIC_DATA;
+}
+
+function renderNatpicTotals() {
+  const data = computeNatpic();
+  const el = document.getElementById("natpic-totals");
+  if (!data || !el) return;
+  const items = NATPIC_BUCKETS.map(b => `
+    <span class="natpic-total-item">
+      <span class="natpic-total-num">${data.counts[b.key]}</span>
+      <span class="natpic-total-label">${escHtml(b.name)}</span>
+    </span>`).join("");
+  el.innerHTML = `<div class="natpic-totals-items">${items}</div>
+    <span class="natpic-chevron"><i class="ti ti-chevron-down"></i></span>`;
+}
+
+function buildNatpicBody() {
+  const data = computeNatpic();
+  if (!data) return "";
+  const cats = NATPIC_BUCKETS.map((b, i) => {
+    const list = data.seats[b.key];
+    const chips = list.map(s =>
+      `<span class="natpic-seat-chip" onclick="showSeatByOns('${s.ons}')">${escHtml(s.name)}</span>`
+    ).join("");
+    // Marker: party buckets → solid party-colour dot; the Con–Reform contest →
+    // a diagonal navy/cyan split dot echoing the favicon (signals "either party");
+    // "not winnable" → the same diagonal split but in the two main left colours
+    // (Labour red / Lib Dem yellow), signalling a left-held seat; other assessment
+    // buckets → a hollow slate ring.
+    let markerHtml;
+    if (b.isParty) {
+      markerHtml = `<span class="natpic-cat-dot is-party" style="background:${b.colour};"></span>`;
+    } else if (b.key === "CONTEST") {
+      markerHtml = `<span class="natpic-cat-dot is-contest"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><defs><clipPath id="npc"><circle cx="6" cy="6" r="6"/></clipPath></defs><g clip-path="url(#npc)"><rect width="12" height="12" fill="${PARTY.REF.colour}"/><polygon points="12,0 12,12 0,12" fill="${PARTY.CON.colour}"/></g></svg></span>`;
+    } else if (b.key === "NOVOTE") {
+      markerHtml = `<span class="natpic-cat-dot is-contest"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><defs><clipPath id="npn"><circle cx="6" cy="6" r="6"/></clipPath></defs><g clip-path="url(#npn)"><rect width="12" height="12" fill="${PARTY.LD.colour}"/><polygon points="12,0 12,12 0,12" fill="${PARTY.LAB.colour}"/></g></svg></span>`;
+    } else {
+      markerHtml = `<span class="natpic-cat-dot is-assessment"></span>`;
+    }
+    return `
+      <div class="natpic-cat" id="natpic-cat-${i}">
+        <div class="natpic-cat-head" onclick="toggleNatpicCat(${i})" role="button" tabindex="0">
+          ${markerHtml}
+          <span class="natpic-cat-namewrap">
+            <span class="natpic-cat-name">${escHtml(b.name)}</span>
+            <div class="natpic-cat-desc">${escHtml(b.desc)}</div>
+          </span>
+          <span class="natpic-cat-count">${data.counts[b.key]}</span>
+          <span class="natpic-cat-chevron"><i class="ti ti-chevron-down"></i></span>
+        </div>
+        <div class="natpic-seats natpic-seats--${b.key}"${b.tint ? ` style="background:${b.tint};"` : ""}>${chips}</div>
+      </div>`;
+  }).join("");
+  return cats + `
+    <div class="natpic-grandtotal">
+      <span>Total seats covered (Great Britain — excludes Northern Ireland)</span>
+      <strong>${data.total}</strong>
+    </div>`;
+}
+
+function toggleNatpicCat(i) {
+  const cat = document.getElementById("natpic-cat-" + i);
+  if (cat) cat.classList.toggle("open");
+}
+
+function toggleNatpic() {
+  const card = document.getElementById("natpic-card");
+  const body = document.getElementById("natpic-body");
+  const toggle = card.querySelector("[data-natpic-toggle]");
+  const isOpen = card.classList.contains("open");
+  if (isOpen) {
+    card.classList.remove("open");
+    body.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+  } else {
+    if (!body.innerHTML) body.innerHTML = buildNatpicBody();
+    card.classList.add("open");
+    body.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+  }
+}
+
+// ── POSTCODE LOOKUP ───────────────────────────────────────────────────────────
+async function lookupPostcode() {
+  const raw = document.getElementById("postcode-input").value.trim().toUpperCase().replace(/\s+/g, "");
+  if (!raw) { showError("Please enter a postcode."); return; }
+
+  showLoading();
+
+  let constituency_code, constituency_name, country;
+
+  try {
+    const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(raw)}`);
+    const json = await res.json();
+    if (json.status !== 200 || !json.result) {
+      showError(`Postcode "${raw}" not found. Please check and try again.`);
+      return;
+    }
+    // 2024 boundaries field
+    constituency_code = json.result.codes?.parliamentary_constituency_2024
+                     || json.result.codes?.parliamentary_constituency;
+    constituency_name = json.result.parliamentary_constituency_2024
+                     || json.result.parliamentary_constituency;
+    country = json.result.country;
+  } catch(e) {
+    showError("Couldn't reach the postcode lookup service. Please check your connection.");
+    return;
+  }
+
+  // Northern Ireland is not supported: the party system there is entirely
+  // different (DUP, UUP, Sinn Féin, SDLP, Alliance), so the Conservative-vs-Reform
+  // tactical framework doesn't apply. Detect via the country field, with the ONS
+  // code prefix ("N…") as a backstop.
+  const isNI = (country === "Northern Ireland")
+            || (typeof constituency_code === "string" && constituency_code.charAt(0) === "N");
+  if (isNI) {
+    showNotSupported(constituency_name);
+    return;
+  }
+
+  // Look up in our data
+  const seat = CONSTITUENCY_DATA[constituency_code];
+
+  if (!seat) {
+    // Show constituency found but no data yet
+    showNoData(constituency_name || constituency_code);
+    return;
+  }
+
+  showResult(seat);
+}
+
+// ── ENTER KEY SUPPORT ─────────────────────────────────────────────────────────
+document.getElementById("postcode-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") lookupPostcode();
+});
+
+// ── SEARCH MODE TOGGLE (postcode ↔ constituency) ──────────────────────────────
+function setSearchMode(mode) {
+  const isSeat = (mode === "seat");
+  document.getElementById("mode-postcode").hidden = isSeat;
+  document.getElementById("mode-seat").hidden = !isSeat;
+  document.getElementById("toggle-postcode").classList.toggle("active", !isSeat);
+  document.getElementById("toggle-seat").classList.toggle("active", isSeat);
+  document.getElementById("toggle-postcode").setAttribute("aria-selected", String(!isSeat));
+  document.getElementById("toggle-seat").setAttribute("aria-selected", String(isSeat));
+  document.getElementById("search-card-sub").textContent = isSeat
+    ? "Search for any constituency to see the 2024 result and the tactical recommendation."
+    : "Enter your postcode to see the 2024 result and the tactical recommendation.";
+  // Focus the newly-shown input for immediate typing
+  (isSeat ? document.getElementById("seat-input") : document.getElementById("postcode-input")).focus();
+}
+
+// ── CONSTITUENCY AUTOCOMPLETE ─────────────────────────────────────────────────
+// The seat list is derived at runtime from the loaded data, so it stays in sync
+// with results.js automatically — no hardcoded name list to maintain.
+let SEAT_INDEX = [];          // [{ name, ons_id, winner }]
+function buildSeatIndex() {
+  if (typeof CONSTITUENCY_DATA === "undefined") return;
+  SEAT_INDEX = Object.entries(CONSTITUENCY_DATA)
+    .map(([ons, s]) => {
+      const ons_id = s.ons_id || ons;
+      // NI constituencies have ONS codes beginning "N". The Con-vs-Reform framework
+      // doesn't apply there, so they're flagged and routed to the "not covered" page.
+      const isNI = (typeof ons_id === "string" && ons_id.charAt(0) === "N");
+      return { name: s.name || ons, ons_id, winner: s.winner, isNI };
+    })
+    .filter(s => s.name)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+buildSeatIndex();
+
+let seatSugItems = [];        // current filtered suggestions
+let seatSugActive = -1;       // keyboard-highlighted index
+
+function renderSeatSuggestions(query) {
+  const list = document.getElementById("seat-suggestions");
+  const input = document.getElementById("seat-input");
+  const q = query.trim().toLowerCase();
+  if (!q) { hideSeatSuggestions(); return; }
+  // Prefix matches first, then any-substring matches, capped for usability.
+  const starts = [], contains = [];
+  for (const s of SEAT_INDEX) {
+    const n = s.name.toLowerCase();
+    if (n.startsWith(q)) starts.push(s);
+    else if (n.includes(q)) contains.push(s);
+  }
+  seatSugItems = starts.concat(contains).slice(0, 8);
+  seatSugActive = -1;
+
+  if (seatSugItems.length === 0) {
+    list.innerHTML = `<li class="seat-sug-empty">No matching constituency</li>`;
+    list.hidden = false;
+    input.setAttribute("aria-expanded", "true");
+    return;
+  }
+  list.innerHTML = seatSugItems.map((s, i) =>
+    `<li role="option" id="seat-sug-${i}" onmousedown="event.preventDefault()" onclick="selectSeat(${i})">
+       ${escHtml(s.name)}
+     </li>`).join("");
+  list.hidden = false;
+  input.setAttribute("aria-expanded", "true");
+}
+
+function hideSeatSuggestions() {
+  const list = document.getElementById("seat-suggestions");
+  list.hidden = true;
+  list.innerHTML = "";
+  seatSugItems = [];
+  seatSugActive = -1;
+  document.getElementById("seat-input").setAttribute("aria-expanded", "false");
+}
+
+function highlightSeatSug(i) {
+  const list = document.getElementById("seat-suggestions");
+  [...list.children].forEach((li, idx) => li.classList.toggle("active", idx === i));
+}
+
+function selectSeat(i) {
+  const item = seatSugItems[i];
+  if (!item) return;
+  document.getElementById("seat-input").value = item.name;
+  hideSeatSuggestions();
+  showSeatByOns(item.ons_id);
+}
+
+// Resolve a seat from the data by ONS code and render it (no postcode lookup).
+function showSeatByOns(onsId) {
+  // Northern Ireland isn't covered (ONS codes beginning "N") — show the same
+  // "not covered" page as the postcode path rather than a meaningless result.
+  if (typeof onsId === "string" && onsId.charAt(0) === "N") {
+    const seat = CONSTITUENCY_DATA[onsId];
+    showNotSupported(seat ? seat.name : onsId);
+    return;
+  }
+  const seat = CONSTITUENCY_DATA[onsId];
+  if (!seat) { showError("Sorry, data for that constituency isn't available yet."); return; }
+  showResult(seat);
+}
+
+// Jump to a uniformly-random constituency. Used by the hidden "1" shortcut and the
+// "Random seat" header button. Samples at the seat level (not postcode), so every
+// seat is equally likely — no urban/rural skew.
+function loadRandomSeat() {
+  const pool = SEAT_INDEX.filter(s => !s.isNI); // GB only — NI seats aren't covered
+  if (!pool.length) { showError("No constituency data loaded."); return; }
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  const seatInput = document.getElementById("seat-input");
+  if (seatInput) seatInput.value = pick.name;
+  hideSeatSuggestions();
+  showSeatByOns(pick.ons_id);
+}
+
+// "Search" button / Enter with no selection: take the best current match.
+function lookupSeatFromInput() {
+  const raw = document.getElementById("seat-input").value.trim().toLowerCase();
+  if (!raw) { showError("Please type a constituency name."); return; }
+  // Hidden dev shortcut: entering "1" jumps to a random constituency. Lets us
+  // sample seats uniformly for spot-checks without a visible, gimmicky control.
+  if (raw === "1") { loadRandomSeat(); return; }
+  // Exact name match first, else best prefix/substring match.
+  let match = SEAT_INDEX.find(s => s.name.toLowerCase() === raw)
+           || SEAT_INDEX.find(s => s.name.toLowerCase().startsWith(raw))
+           || SEAT_INDEX.find(s => s.name.toLowerCase().includes(raw));
+  if (!match) { showError(`No constituency found matching "${document.getElementById("seat-input").value.trim()}".`); return; }
+  document.getElementById("seat-input").value = match.name;
+  hideSeatSuggestions();
+  showSeatByOns(match.ons_id);
+}
+
+// Seat input events: live filtering + keyboard navigation of the dropdown.
+const seatInputEl = document.getElementById("seat-input");
+seatInputEl.addEventListener("input", e => renderSeatSuggestions(e.target.value));
+seatInputEl.addEventListener("keydown", e => {
+  const open = !document.getElementById("seat-suggestions").hidden && seatSugItems.length > 0;
+  if (e.key === "ArrowDown" && open) {
+    e.preventDefault();
+    seatSugActive = (seatSugActive + 1) % seatSugItems.length;
+    highlightSeatSug(seatSugActive);
+  } else if (e.key === "ArrowUp" && open) {
+    e.preventDefault();
+    seatSugActive = (seatSugActive - 1 + seatSugItems.length) % seatSugItems.length;
+    highlightSeatSug(seatSugActive);
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    if (open && seatSugActive >= 0) selectSeat(seatSugActive);
+    else lookupSeatFromInput();
+  } else if (e.key === "Escape") {
+    hideSeatSuggestions();
+  }
+});
+// Hide the dropdown when focus leaves the field.
+seatInputEl.addEventListener("blur", () => setTimeout(hideSeatSuggestions, 120));
+
+// Brand logo: keyboard activation (Enter / Space)
+document.querySelector(".brand").addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goHome(); }
+});
+
+// Render the upcoming by-elections on load
+renderByelections();
+
+// Render the National Picture headline totals on load (the per-category seat lists
+// are built lazily when the panel is expanded).
+renderNatpicTotals();
+
+// Methodology toggle: keyboard activation (Enter / Space)
+const methodToggleEl = document.querySelector("[data-method-toggle]");
+if (methodToggleEl) {
+  methodToggleEl.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleMethod(); }
+  });
+}
+
+// ── RENDER FUNCTIONS ──────────────────────────────────────────────────────────
+function showLoading() {
+  document.getElementById("result-area").innerHTML = `
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <p>Looking up your constituency…</p>
+    </div>`;
+}
+
+function showError(msg) {
+  document.getElementById("result-area").innerHTML = `
+    <div class="error-card">⚠ ${msg}</div>`;
+}
+
+function showNoData(name) {
+  document.getElementById("result-area").innerHTML = `
+    <div class="result-card">
+      <div class="result-header">
+        <div>
+          <div class="constituency-name">${escHtml(name)}</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--ink-mid);">Constituency identified successfully.</p>
+        </div>
+      </div>
+      <div class="rec-banner rec-tbc" style="padding:28px 32px;">
+        <div class="rec-text-block">
+          <div class="rec-label">Status</div>
+          <div class="rec-headline" style="color:var(--ink-mid);">Data coming soon</div>
+          <div class="rec-reason">This constituency has been identified, but its 2024 results haven't been loaded yet. Full data for all 650 constituencies will be added shortly.</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function showNotSupported(name) {
+  document.getElementById("result-area").innerHTML = `
+    <div class="result-card">
+      <div class="result-header">
+        <div>
+          <div class="constituency-name">${name ? escHtml(name) : "Northern Ireland"}</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--ink-mid);">Northern Ireland constituency</p>
+        </div>
+      </div>
+      <div class="rec-banner rec-tbc" style="padding:28px 32px;">
+        <div class="rec-text-block">
+          <div class="rec-label">Not yet supported</div>
+          <div class="rec-headline" style="color:var(--ink-mid);">Northern Ireland isn't covered</div>
+          <div class="rec-reason">Northern Ireland has a distinct party system — the contest is between parties like the DUP, UUP, Sinn Féin, the SDLP and Alliance, rather than the Conservatives and Reform UK. A Britain-wide tactical model doesn't apply here, so no recommendation is made for Northern Irish seats.</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+let chartInstance = null;
+
+function goHome() {
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+  document.getElementById("result-area").innerHTML = "";
+  const input = document.getElementById("postcode-input");
+  if (input) input.value = "";
+  const seatInput = document.getElementById("seat-input");
+  if (seatInput) seatInput.value = "";
+  if (typeof hideSeatSuggestions === "function") hideSeatSuggestions();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showResult(seat, options) {
+  options = options || {};
+  // If this seat is a listed by-election, apply the by-election rules regardless
+  // of how the user reached it (postcode search or clicking the by-election row),
+  // so the result page always agrees with the by-election banner.
+  const byeMatch = byelectionFor(seat.ons_id);
+  if (byeMatch) {
+    options = Object.assign({ byelection: true, decisiveGap: 0 }, options);
+  }
+  const rec = getRecommendation(seat, options);
+  const winnerParty = seat.winner;
+  const totalVotes = seat.results.reduce((s, r) => s + r.votes, 0);
+  const topShare = seat.results[0].share;
+
+  // Recommendation banner class
+  let recClass = "rec-tbc";
+  let recIconContent = "<i class=\"ti ti-help-circle\"></i>";
+  let recIconStyle = "";
+  if (rec.party === "CON") { recClass = "rec-con"; recIconContent = "<i class=\"ti ti-circle-check\"></i>"; }
+  else if (rec.party === "REF") { recClass = "rec-ref"; recIconContent = "<i class=\"ti ti-circle-check\"></i>"; }
+  // SNP–Labour / SNP–Lib Dem contests get a diagonal party-striped banner
+  else if (rec.snpContestPartner === "LAB") { recClass = "rec-snplab"; }
+  else if (rec.snpContestPartner === "LD")  { recClass = "rec-snpld"; }
+  // Conservative–Reform contests get navy/cyan stripes
+  else if (rec.type === "rightcontest") { recClass = "rec-conref"; }
+  // "No clear pick yet" — Con and Reform neck-and-neck. Amber wash + balance-scale
+  // icon to read as "evenly poised / watch this space" rather than flat/empty.
+  else if (rec.type === "tooclose") { recClass = "rec-tbc"; recIconContent = "<i class=\"ti ti-loader\"></i>"; }
+  // Defection complicates the seat — muted grey (like "not winnable"), with an
+  // exchange/transfer icon to hint at the candidate switching party.
+  else if (rec.type === "defection") { recClass = "rec-tbc"; recIconContent = "<i class=\"ti ti-arrows-exchange\"></i>"; }
+  // Speaker's seat — muted grey (no tactical vote), with the Speaker's-Chair armchair icon.
+  else if (rec.type === "speaker") { recClass = "rec-tbc"; recIconContent = "<i class=\"ti ti-armchair\"></i>"; }
+
+  // Winner badge
+  const badgeCls = partyBadge(winnerParty);
+  const winnerLabel = partyLabel(winnerParty);
+
+  // Legend items (replaces the percentage table)
+  const legendItems = seat.results.map(r => {
+    const col = partyColour(r.party);
+    return `<span class="legend-item"><span class="legend-dot" style="background:${col}"></span>${escHtml(partyLabel(r.party))}</span>`;
+  }).join("");
+
+  // Stat callouts. Three situations:
+  //  Right panel: winner callout + projected Con/Reform comparison + explanation.
+  const winnerShare = seat.results[0].share;
+  const winnerCol = partyColour(winnerParty);
+
+  const p = rec.proj || {};
+  const byP = {};
+  for (const r of seat.results) byP[r.party] = r.share;
+  const con2024 = byP["CON"] || 0;
+  const ref2024 = byP["REF"] || 0;
+
+  // Winner callout (shown for all normal seats; suppressed for the Speaker's seat,
+  // where the winner is bundled in "Other" and the 2024 party data isn't meaningful).
+  let calloutsHtml = "";
+  if (rec.type !== "speaker") {
+    calloutsHtml += `
+    <div class="stat-callout" style="background:${hexToTint(winnerCol)};">
+      <div class="stat-label">Won in 2024 by</div>
+      <div class="stat-value" style="color:${readableColour(winnerCol)};">${escHtml(winnerLabel)} — ${winnerShare.toFixed(1)}%</div>
+    </div>`;
+  }
+
+  // Projected Con vs Reform comparison (the heart of the recommendation).
+  // Shows 2024 actual → projected for each, with the leader emphasised.
+  // The projection panel is a factual display of the national-swing projection. The
+  // "Best placed" badge + grey pill signal "this is the party to back", so they should
+  // appear ONLY when a recommendation is actually being made AND it matches the
+  // projected leader. That covers every case correctly: no recommendation (e.g. a
+  // not-winnable or too-close seat) → no highlight; a carve-out seat where we recommend
+  // the party that ISN'T projected ahead → no highlight (the caption explains the
+  // divergence); recommendation matches the projected leader → highlight shown.
+  const conCol = partyColour("CON");
+  const refCol = partyColour("REF");
+  const projLeaderParty = (p.refProj || 0) > (p.conProj || 0) ? "REF"
+                        : (p.conProj || 0) > (p.refProj || 0) ? "CON" : null;
+  const recDivergesFromProjection = rec.party && projLeaderParty && rec.party !== projLeaderParty;
+  const highlightParty = (rec.party && rec.party === projLeaderParty) ? projLeaderParty : null;
+  function projRow(party, label, col, was, now) {
+    const showLeaderStyle = (party === highlightParty);
+    return `
+      <div class="proj-row ${showLeaderStyle ? "proj-leader" : ""}">
+        <span class="proj-party"><span class="proj-dot" style="background:${col}"></span>${escHtml(label)}</span>
+        <span class="proj-figs">
+          <span class="proj-was">${was.toFixed(0)}%</span>
+          <i class="ti ti-arrow-right proj-arrow"></i>
+          <span class="proj-now" style="color:${readableColour(col)};">${now.toFixed(0)}%</span>
+        </span>
+        ${showLeaderStyle ? `<span class="proj-badge" style="background:${col};">Best placed</span>` : ``}
+      </div>`;
+  }
+  // In override seats (we recommend the party NOT projected ahead), the panel title
+  // itself carries the divergence message — priming the reader before they read the
+  // numbers — and the footer caption is dropped as redundant. In normal seats the title
+  // is the neutral description and the footer shows the "2024 → projected" key.
+  const projTitle = recDivergesFromProjection
+    ? "Raw national-swing projection — see why our pick differs below"
+    : "Projection using national swing and without tactical voting";
+  const projFootHtml = recDivergesFromProjection
+    ? ""
+    : `<div class="proj-foot">2024 result → projected share</div>`;
+  const projComparisonHtml = `
+    <div class="proj-block">
+      <div class="proj-block-title">${projTitle}
+        <span class="proj-info" tabindex="0" data-tip="Projection using current ${POLLING.source} polling (${POLLING.updated}), applied as a uniform national swing from each party's 2024 result. Figures are rounded.">
+          <i class="ti ti-info-circle"></i>
+        </span>
+      </div>
+      ${projRow("CON", "Conservative", conCol, con2024, p.conProj || 0)}
+      ${projRow("REF", "Reform UK", refCol, ref2024, p.refProj || 0)}
+      ${projFootHtml}
+    </div>`;
+
+  // The Con-vs-Reform projection is shown for all normal seats — it's especially useful
+  // on "too close to call" and carve-out seats where the figures explain the call. It's
+  // suppressed for the Speaker's seat, where Con/Reform didn't stand and a 0%→0% panel
+  // would be meaningless.
+  if (rec.type !== "speaker") calloutsHtml += projComparisonHtml;
+
+  // Per-seat explanation paragraph
+  const explanationHtml = `
+    <div class="seat-explanation">
+      <span class="seat-explanation-text">${escHtml(rec.reason)}</span>
+    </div>`;
+
+  // Optional seat-specific factual note (e.g. a local party not captured by the model)
+  const seatNote = SEAT_NOTES[seat.ons_id];
+  const seatNoteHtml = seatNote
+    ? `<div class="seat-note"><i class="ti ti-info-circle"></i><span>${escHtml(seatNote)}</span></div>`
+    : ``;
+
+  // Pie chart data
+  const chartLabels  = seat.results.map(r => partyLabel(r.party));
+  const chartData    = seat.results.map(r => r.share);
+  const chartColours = seat.results.map(r => partyColour(r.party));
+
+  document.getElementById("result-area").innerHTML = `
+    <div class="result-card">
+
+      <div class="result-header">
+        <div>
+          <div class="constituency-name">${escHtml(seat.name)}</div>
+        </div>
+        ${SHOW_RANDOM_BUTTON ? `<button class="random-seat-btn" onclick="loadRandomSeat()" title="Jump to a random constituency"><i class="ti ti-refresh"></i><span>Random seat</span></button>` : ""}
+      </div>
+
+      <div class="rec-banner ${recClass}">
+        ${(rec.party || rec.type === "tooclose" || rec.type === "defection" || rec.type === "speaker") ? `<div class="rec-icon"><span class="rec-party-icon">${recIconContent}</span></div>` : ""}
+        <div class="rec-text-block">
+          <div class="rec-label">${rec.party ? "Tactical vote recommendation" : "Assessment"}</div>
+          <div class="rec-headline">${escHtml(rec.headline)}</div>
+        </div>
+      </div>
+
+      <div class="data-row">
+        <div class="chart-panel">
+          <div class="chart-2024-label">2024 General Election result</div>
+          <div class="chart-wrap">
+            <canvas id="result-chart"></canvas>
+          </div>
+          <div class="chart-legend">${legendItems}</div>
+        </div>
+        <div class="callouts-panel">
+          <div class="panel-title">The story of this seat</div>
+          ${calloutsHtml}
+          ${explanationHtml}
+          ${seatNoteHtml}
+        </div>
+      </div>
+
+      <div class="result-footer">
+        ${(GENERAL_ELECTION_IMMINENT || byeMatch) ? "" : `<div class="checkback-note"><i class="ti ti-refresh"></i><span>Recommendations can change as national polling shifts — make sure to check back nearer an election.</span></div>`}
+        <div class="footer-disclaimer">Vote shares shown are the actual 2024 result (source: House of Commons Library). Total votes cast: ${totalVotes.toLocaleString()}.
+        Recommendations use ${POLLING.source} polling (${POLLING.updated}) applied as a uniform national swing — hover the ⓘ for projected figures.</div>
+      </div>
+    </div>`;
+
+  // Draw pie chart
+  if (chartInstance) chartInstance.destroy();
+  const ctx = document.getElementById("result-chart").getContext("2d");
+  chartInstance = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: chartLabels,
+      datasets: [{
+        data: chartData,
+        backgroundColor: chartColours,
+        borderColor: "#fff",
+        borderWidth: 2,
+        hoverOffset: 6,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.parsed.toFixed(1)}%`
+          }
+        }
+      },
+      animation: { duration: 600 },
+    }
+  });
+
+  scrollToResult();
+}
+
+// Scroll the result into view, offsetting for the sticky navbar so the seat name
+// sits comfortably below it rather than being hidden underneath.
+function scrollToResult() {
+  const area = document.getElementById("result-area");
+  const nav = document.querySelector(".navbar");
+  const navH = nav ? nav.getBoundingClientRect().height : 0;
+  const top = area.getBoundingClientRect().top + window.scrollY - navH - 16;
+  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+}
+
+function escHtml(s) {
+  if (!s) return "";
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+</script>
+</body>
+</html>

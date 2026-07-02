@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stop the Left — A Message</title>
+<meta name="description" content="A message about the future of right-of-centre tactical voting online.">
+<link rel="canonical" href="https://stoptheleft.vote/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stoptheleft.vote/">
+<meta property="og:site_name" content="Stop the Left">
+<meta property="og:title" content="Stop the Left — A Message">
+<meta property="og:description" content="A message about the future of right-of-centre tactical voting online.">
+<meta property="og:locale" content="en_GB">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan: #17B9D1;
+    --cyan-dark: #0e8ca0;
+    --cyan-light: #e3f6fa;
+    --blue: #0a3d8f;
+    --blue-dark: #062a66;
+    --blue-deep: #041d4a;
+    --ink: #16181d;
+    --ink-mid: #555;
+    --paper: #ffffff;
+    --radius-lg: 16px;
+  }
+
+  html, body { height: 100%; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background:
+      linear-gradient(180deg, rgba(10,61,143,0.97) 0%, rgba(8,50,120,1) 100%),
+      radial-gradient(ellipse 70% 60% at 15% 0%, rgba(23,185,209,0.30) 0%, transparent 55%);
+    background-color: var(--blue);
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    width: 100%;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 80px -40px rgba(0,0,0,0.6);
+    overflow: hidden;
+  }
+
+  .card-top {
+    background: linear-gradient(135deg, var(--blue) 0%, #0c3f93 55%, var(--blue-dark) 100%);
+    padding: 40px 44px 34px;
+    text-align: center;
+    color: #fff;
+  }
+  .mark {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    display: block;
+  }
+  .brand {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+  }
+  .headline .accent { color: var(--cyan); }
+
+  .card-body {
+    padding: 36px 44px 42px;
+  }
+  .card-body p {
+    font-size: 16.5px;
+    line-height: 1.72;
+    color: var(--ink-mid);
+    margin-bottom: 20px;
+  }
+  .card-body p strong { color: var(--ink); font-weight: 600; }
+  .card-body p:last-of-type { margin-bottom: 0; }
+
+  .pull {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--blue);
+    text-align: center;
+    margin: 30px 0;
+    padding: 0 8px;
+  }
+
+  .cta-wrap { text-align: center; margin-top: 34px; }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cyan);
+    color: #fff;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 999px;
+    transition: background 0.15s, transform 0.12s;
+  }
+  .cta:hover { background: var(--cyan-dark); transform: translateY(-2px); }
+  .cta svg { width: 18px; height: 18px; }
+
+  .signoff {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-mid);
+  }
+
+  .foot {
+    text-align: center;
+    padding: 22px 20px 4px;
+    color: rgba(255,255,255,0.55);
+    font-size: 12.5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 520px) {
+    .card-top { padding: 32px 26px 28px; }
+    .card-body { padding: 30px 26px 34px; }
+    .headline { font-size: 25px; }
+    .card-body p { font-size: 15.5px; }
+    .pull { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-top">
+      <!-- favicon-style mark: cyan / navy diagonal split -->
+      <svg class="mark" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs><clipPath id="m"><rect width="56" height="56" rx="14"/></clipPath></defs>
+        <g clip-path="url(#m)">
+          <rect width="56" height="56" fill="#17B9D1"/>
+          <polygon points="56,0 56,56 0,56" fill="#0a3d8f"/>
+        </g>
+      </svg>
+      <div class="brand">Stop the Left</div>
+      <div class="headline">A note on <span class="accent">uniting the right</span></div>
+    </div>
+
+    <div class="card-body">
+      <p>Thank you for visiting <strong>Stop the Left</strong>. This site was built to make one simple case: that where the right-of-centre vote divides, the left wins by default — and that voters deserve a clear, honest guide to backing whichever right-of-centre party is best placed in their own constituency.</p>
+
+      <p>That argument has now found a larger home. A second site, <strong>Unite the Right</strong>, has launched with the same goal and far greater reach, and it makes the case better resourced than a solo project ever could.</p>
+
+      <div class="pull">Just as there isn't room for two right-of-centre parties to split each seat, there isn't room for two right-of-centre tactical voting sites to split the cause.</div>
+
+      <p>So rather than divide the very effort this project exists to unite, <strong>Stop the Left</strong> is stepping aside and pointing you to where that work now continues. The principle matters more than the banner it flies under.</p>
+
+      <p>If you came here to find your tactical vote, you'll find it there — covering every seat in Great Britain.</p>
+
+      <div class="cta-wrap">
+        <a class="cta" href="https://unitetherightuk.com/" target="_blank" rel="noopener">
+          Continue to Unite the Right
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="signoff">With thanks to everyone who visited, shared, and cared about the cause.</div>
+    </div>
+  </div>
+
+  <div class="foot">An independent project · No longer actively maintained</div>
+
+</body>
+</html>
